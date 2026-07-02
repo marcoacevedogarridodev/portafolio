@@ -6,13 +6,13 @@
   <title>Marco Acevedo - Desarrollador FullStack & IA</title>
   <style>
     :root {
-      --gris-bg:   #111318;
-      --gris-card: #1a1d24;
-      --borde:     #2a2d35;
-      --verde:     #22c55e;
-      --texto:     #e8eaed;
-      --muted:     #8b949e;
-      --blanco:    #ffffff;
+      --gris-bg:   #ffffff;
+      --gris-card: #f6f6f6;
+      --borde:     #e5e5e5;
+      --verde:     #0070f3;
+      --texto:     #111111;
+      --muted:     #666666;
+      --blanco:    #111111;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { background:var(--gris-bg); color:var(--texto); font-family:'Segoe UI',system-ui,sans-serif; line-height:1.6; }
@@ -20,7 +20,7 @@
     /* NAV */
     nav {
       position:sticky; top:0; z-index:100;
-      background:rgba(17,19,24,0.92); backdrop-filter:blur(12px);
+      background:rgba(255,255,255,0.92); backdrop-filter:blur(12px);
       border-bottom:1px solid var(--borde);
       display:flex; justify-content:space-between; align-items:center;
       padding:16px 40px;
@@ -34,7 +34,7 @@
     .hero { padding:100px 40px 80px; max-width:900px; margin:0 auto; }
     .hero-badge {
       display:inline-flex; align-items:center; gap:8px;
-      background:rgba(34,197,94,.1); border:1px solid rgba(34,197,94,.3);
+      background:rgba(0,112,243,.08); border:1px solid rgba(0,112,243,.25);
       color:var(--verde); font-size:.78rem; font-weight:600;
       letter-spacing:.1em; text-transform:uppercase;
       padding:6px 14px; border-radius:100px; margin-bottom:28px;
@@ -45,33 +45,33 @@
       animation:pulso 2s infinite;
     }
     @keyframes pulso { 0%,100%{opacity:1} 50%{opacity:.3} }
-    .hero h1 { font-size:clamp(2.4rem,5vw,3.8rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; color:var(--blanco); margin-bottom:20px; }
+    .hero h1 { font-size:clamp(2.4rem,5vw,3.8rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; color:#111111; margin-bottom:20px; }
     .hero h1 span { color:var(--verde); }
     .hero > p { font-size:1.1rem; color:var(--muted); max-width:600px; margin-bottom:36px; }
     .hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
-    .btn-primary { background:var(--verde); color:#000; font-weight:700; font-size:.9rem; padding:12px 24px; border-radius:8px; text-decoration:none; transition:background .2s,transform .1s; }
-    .btn-primary:hover { background:#16a34a; transform:translateY(-1px); }
+    .btn-primary { background:var(--verde); color:#ffffff; font-weight:700; font-size:.9rem; padding:12px 24px; border-radius:8px; text-decoration:none; transition:background .2s,transform .1s; }
+    .btn-primary:hover { background:#0060df; transform:translateY(-1px); }
     .btn-secondary { border:1px solid var(--borde); color:var(--texto); font-size:.9rem; padding:12px 24px; border-radius:8px; text-decoration:none; transition:border-color .2s,color .2s; }
     .btn-secondary:hover { border-color:var(--verde); color:var(--verde); }
 
-    /* SECCIONES GENÉRICAS */
+    /* SECCIONES */
     .seccion { padding:60px 40px; max-width:900px; margin:0 auto; border-top:1px solid var(--borde); }
     .seccion-titulo { font-size:.75rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:32px; }
 
     /* CHIPS */
     .chips { display:flex; flex-wrap:wrap; gap:10px; }
     .chip { background:var(--gris-card); border:1px solid var(--borde); color:var(--texto); font-size:.8rem; padding:6px 14px; border-radius:6px; }
-    .chip.destacado { border-color:rgba(34,197,94,.4); color:var(--verde); }
+    .chip.destacado { border-color:rgba(0,112,243,.35); color:var(--verde); background:rgba(0,112,243,.05); }
 
     /* GRID PROYECTOS */
     .grid-proyectos { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
-    .card { background:var(--gris-card); border:1px solid var(--borde); border-radius:12px; padding:24px; text-decoration:none; color:inherit; transition:border-color .2s,transform .15s; display:flex; flex-direction:column; gap:12px; }
-    .card:hover { border-color:var(--verde); transform:translateY(-3px); }
+    .card { background:var(--gris-card); border:1px solid var(--borde); border-radius:12px; padding:24px; text-decoration:none; color:inherit; transition:border-color .2s,transform .15s,box-shadow .15s; display:flex; flex-direction:column; gap:12px; }
+    .card:hover { border-color:var(--verde); transform:translateY(-3px); box-shadow:0 4px 20px rgba(0,112,243,.1); }
     .card-icon { font-size:1.6rem; line-height:1; }
-    .card h3 { font-size:.95rem; font-weight:700; color:var(--blanco); }
+    .card h3 { font-size:.95rem; font-weight:700; color:#111111; }
     .card p  { font-size:.82rem; color:var(--muted); flex:1; }
     .card-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
-    .tag { background:rgba(34,197,94,.08); border:1px solid rgba(34,197,94,.2); color:var(--verde); font-size:.7rem; font-weight:600; padding:2px 8px; border-radius:4px; letter-spacing:.05em; }
+    .tag { background:rgba(0,112,243,.07); border:1px solid rgba(0,112,243,.2); color:var(--verde); font-size:.7rem; font-weight:600; padding:2px 8px; border-radius:4px; letter-spacing:.05em; }
 
     /* TIMELINE */
     .timeline { display:flex; flex-direction:column; }
@@ -80,14 +80,14 @@
     .tl-fecha { font-size:.78rem; color:var(--muted); padding-top:4px; text-align:right; }
     .tl-linea { background:var(--borde); position:relative; }
     .tl-linea::before { content:''; position:absolute; top:6px; left:50%; transform:translateX(-50%); width:9px; height:9px; background:var(--verde); border-radius:50%; border:2px solid var(--gris-bg); }
-    .tl-empresa { font-weight:700; font-size:.95rem; color:var(--blanco); }
+    .tl-empresa { font-weight:700; font-size:.95rem; color:#111111; }
     .tl-rol { font-size:.82rem; color:var(--verde); margin-bottom:6px; }
     .tl-desc { font-size:.82rem; color:var(--muted); }
 
-    /* SECCIoN CHAT INLINE */
+    /* CHAT INLINE */
     .chat-inline { padding:60px 40px; max-width:900px; margin:0 auto; border-top:1px solid var(--borde); }
     .chat-inline-header { display:flex; align-items:center; gap:14px; margin-bottom:8px; }
-    .chat-inline-header h2 { font-size:1.4rem; font-weight:800; color:var(--blanco); }
+    .chat-inline-header h2 { font-size:1.4rem; font-weight:800; color:#111111; }
     .chat-inline-sub { font-size:.88rem; color:var(--muted); margin-bottom:24px; }
     .chat-inline-sub span { color:var(--verde); }
 
@@ -116,14 +116,14 @@
     .msg.agente  { align-self:flex-start; }
     .msg-avatar {
       width:28px; height:28px; border-radius:50%;
-      background:#111318; border:1px solid rgba(34,197,94,.3);
+      background:#f0f0f0; border:1px solid rgba(0,112,243,.2);
       display:flex; align-items:center; justify-content:center;
       font-size:.8rem; flex-shrink:0;
     }
-    .msg.usuario .msg-avatar { background:rgba(37,99,235,.2); border-color:rgba(37,99,235,.4); }
+    .msg.usuario .msg-avatar { background:rgba(0,112,243,.1); border-color:rgba(0,112,243,.3); }
     .msg-burbuja { padding:10px 14px; border-radius:10px; font-size:.85rem; line-height:1.55; }
-    .msg.agente  .msg-burbuja { background:#22252e; color:var(--texto); border:1px solid var(--borde); }
-    .msg.usuario .msg-burbuja { background:#1e3a5f; color:#dbeafe; }
+    .msg.agente  .msg-burbuja { background:#ffffff; color:var(--texto); border:1px solid var(--borde); }
+    .msg.usuario .msg-burbuja { background:rgba(0,112,243,.1); color:#0050b3; }
 
     .chat-typing { display:none; align-self:flex-start; }
     .chat-typing.visible { display:flex; }
@@ -133,45 +133,43 @@
     .dot-bounce span:nth-child(3) { animation-delay:.3s; }
     @keyframes bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-7px)} }
 
-    .chat-input-row {
-      display:flex; gap:0; border-top:1px solid var(--borde);
-    }
+    .chat-input-row { display:flex; gap:0; border-top:1px solid var(--borde); }
     .chat-input-row input {
       flex:1; background:transparent; border:none; outline:none;
       color:var(--texto); font-size:.88rem; padding:14px 18px;
     }
     .chat-input-row input::placeholder { color:var(--muted); }
     .chat-send {
-      background:var(--verde); border:none; color:#000;
+      background:var(--verde); border:none; color:#ffffff;
       font-weight:700; font-size:.85rem; padding:14px 22px;
       cursor:pointer; transition:background .2s; white-space:nowrap;
     }
-    .chat-send:hover { background:#16a34a; }
-    .chat-send:disabled { background:#2a2d35; color:var(--muted); cursor:not-allowed; }
+    .chat-send:hover { background:#0060df; }
+    .chat-send:disabled { background:#e5e5e5; color:var(--muted); cursor:not-allowed; }
 
-    /* TOAST FLOTANTE */
+    /* TOAST */
     .toast-btn {
       position:fixed; bottom:24px; right:24px; z-index:200;
-      background:#111318; color:#000; border:none;
+      background:var(--verde); color:#ffffff; border:none;
       width:52px; height:52px; border-radius:50%;
-      font-size:1.4rem; cursor:pointer; box-shadow:0 4px 20px rgba(34,197,94,.4);
+      font-size:1.4rem; cursor:pointer; box-shadow:0 4px 20px rgba(0,112,243,.35);
       transition:transform .2s,box-shadow .2s;
       display:flex; align-items:center; justify-content:center;
     }
-    .toast-btn:hover { transform:scale(1.1); box-shadow:0 6px 28px rgba(34,197,94,.5); }
+    .toast-btn:hover { transform:scale(1.1); box-shadow:0 6px 28px rgba(0,112,243,.5); }
     .toast-badge {
       position:absolute; top:-3px; right:-3px;
       width:16px; height:16px; background:#ef4444; border-radius:50%;
       font-size:.6rem; font-weight:700; color:#fff;
       display:flex; align-items:center; justify-content:center;
-      border:2px solid var(--gris-bg);
+      border:2px solid #ffffff;
     }
 
     .toast-panel {
       position:fixed; bottom:86px; right:24px; z-index:199;
-      width:340px; background:var(--gris-card);
+      width:340px; background:#ffffff;
       border:1px solid var(--borde); border-radius:16px;
-      box-shadow:0 8px 32px rgba(0,0,0,.5);
+      box-shadow:0 8px 32px rgba(0,0,0,.12);
       display:none; flex-direction:column; overflow:hidden;
       animation:slideUp .2s ease;
     }
@@ -181,14 +179,14 @@
     .toast-header {
       display:flex; align-items:center; justify-content:space-between;
       padding:14px 16px; border-bottom:1px solid var(--borde);
-      background:#1e2128;
+      background:#f6f6f6;
     }
     .toast-header-left { display:flex; align-items:center; gap:10px; }
-    .toast-avatar { width:32px; height:32px; border-radius:50%; background:#111318; border:1px solid rgba(34,197,94,.3); display:flex; align-items:center; justify-content:center; font-size:1rem; }
-    .toast-title { font-size:.88rem; font-weight:700; color:var(--blanco); }
+    .toast-avatar { width:32px; height:32px; border-radius:50%; background:#eff6ff; border:1px solid rgba(0,112,243,.2); display:flex; align-items:center; justify-content:center; font-size:1rem; }
+    .toast-title { font-size:.88rem; font-weight:700; color:#111111; }
     .toast-sub { font-size:.7rem; color:var(--verde); }
     .toast-cerrar { background:none; border:none; color:var(--muted); font-size:1.1rem; cursor:pointer; padding:4px; transition:color .2s; }
-    .toast-cerrar:hover { color:var(--blanco); }
+    .toast-cerrar:hover { color:#111111; }
 
     .toast-mensajes {
       height:260px; overflow-y:auto; padding:14px;
@@ -201,16 +199,16 @@
     .toast-typing { display:none; align-self:flex-start; }
     .toast-typing.visible { display:flex; }
 
-    .toast-input-row { display:flex; border-top:1px solid var(--borde); }
+    .toast-input-row { display:flex; border-top:1px solid var(--borde); background:#ffffff; }
     .toast-input-row input { flex:1; background:transparent; border:none; outline:none; color:var(--texto); font-size:.82rem; padding:12px 14px; }
     .toast-input-row input::placeholder { color:var(--muted); }
     .toast-send { background:none; border:none; color:var(--verde); font-size:1.1rem; padding:12px 14px; cursor:pointer; transition:color .2s; }
-    .toast-send:hover { color:#16a34a; }
+    .toast-send:hover { color:#0060df; }
     .toast-send:disabled { color:var(--borde); cursor:not-allowed; }
 
     /* CONTACTO */
     .contacto { padding:80px 40px; max-width:900px; margin:0 auto; border-top:1px solid var(--borde); text-align:center; }
-    .contacto h2 { font-size:2rem; font-weight:800; color:var(--blanco); margin-bottom:12px; }
+    .contacto h2 { font-size:2rem; font-weight:800; color:#111111; margin-bottom:12px; }
     .contacto > p { color:var(--muted); margin-bottom:32px; }
     .contacto-links { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
     .contacto-link { display:flex; align-items:center; gap:8px; background:var(--gris-card); border:1px solid var(--borde); color:var(--texto); text-decoration:none; padding:12px 20px; border-radius:8px; font-size:.88rem; transition:border-color .2s,color .2s; }
@@ -431,9 +429,9 @@
   </div>
 </section>
 
-<!-- CONSULTA IA - SECCIoN INLINE -->
+<!-- CONSULTA IA -->
 <section class="chat-inline" id="consulta-ia">
-  <p class="seccion-titulo">Experiencia</p>
+  <p class="seccion-titulo">Consulta IA</p>
   <p class="chat-inline-sub">
     Pregunta cualquier cosa sobre mi experiencia, tecnologias o proyectos.<br>
     <span>Powered by GPT-4o-mini - responde solo con informacion de mi CV real.</span>
@@ -516,10 +514,6 @@
 </div>
 
 <script>
-// ============================================================
-// YA NO HAY API KEY AQUI - Todo pasa por el proxy seguro
-// ============================================================
-
 const CONTEXTO_CV = `
 Eres el asistente virtual de Marco Antonio Acevedo Garrido, desarrollador FullStack e IA con sede en Santiago, Chile.
 SOLO puedes responder con informacion de su CV y experiencia real. Si te preguntan algo fuera de su perfil, redirige amablemente.
@@ -544,144 +538,57 @@ Nacimiento: 1985-10-04
 - Testing: pytest, unittest, CI/CD, GitHub Actions, GitLab CI
 - Control de versiones: Git, GitLab, Jira, Scrum
 
-=== PROYECTOS GITHUB (repositorio: marcoacevedogarridodev) - 11 proyectos públicos ===
-1. Agente_IA_CasaCambios: Agente conversacional que consulta tipos de cambio en tiempo real y ejecuta operaciones de divisas usando herramientas externas vía LangChain. Tecnologías: LangChain, OpenAI, Python.
-2. Scraper_Pj: Scraper TypeScript que extrae jurisprudencia del Poder Judicial del Perú sin navegador. Maneja paginación JSF, descarga PDFs y gestiona errores 429 con backoff exponencial. Tecnologías: TypeScript, Axios, Cheerio.
-3. Tienda_plantas: E-commerce de plantas con catálogo, carrito de compras y frontend web. Tecnologías: HTML, CSS, JavaScript.
-4. Everwall_IA_mobile: Aplicación móvil con backend Python e IA para gestión y análisis de datos en tiempo real. Tecnologías: Python, FastAPI, OpenAI.
-5. Agente_IA_Pdf: Sistema RAG que procesa documentos PDF y responde preguntas sobre su contenido usando embeddings. Tecnologías: RAG, OpenAI, Python, HTML.
-6. MModulo_Odoo_Aeropost: Agente IA en Odoo 14 para proceso de dropshipping con Aeropost. Automatiza compras y tracking de repuestos. Tecnologías: Odoo 14, LangChain, Python.
-7. MModulo-Odoo-Eleccom: Módulo Odoo 16 para Eleccom. RRHH (contratos, finiquitos, permisos), inventario eléctrico con dashboard de bodegas e integración OpenAI para generación de documentos. Tecnologías: Odoo 16, OWL, QWeb, OpenAI, Python.
-8. Aeropost-Bot: Bot conversacional con IA para automatizar consultas y operaciones en la plataforma Aeropost. Tecnologías: Python, LangChain.
-9. Agente_IA_Reclutador: Agente con LangGraph que analiza CVs, evalúa compatibilidad con puestos y genera reportes de candidatos. Tecnologías: LangGraph, FastAPI, Python.
-10. Sala_de_Reuniones_Dev: Sistema de reserva y gestión de salas de reuniones para equipos de desarrollo. Backend Python con gestión de disponibilidad y usuarios. Tecnologías: Python.
-11. Fint-dev: Aplicación fintech de gestión financiera personal con dashboard de ingresos/egresos y visualizaciones interactivas. Tecnologías: JavaScript.
-
 === EXPERIENCIA LABORAL ===
-
-FREELANCE - Eleccom Ingeniería Eléctrica (2025 - Actualidad)
-Desarrollador ERP Odoo 16.
-- Módulo RRHH: ingreso de empleados, contratos, finiquitos, anexos, permisos en obra.
-- Formularios inteligentes con OpenAI API para generación y validación automática de documentos PDF.
-- Módulo de Inventario: control de instrumentos eléctricos, dashboard de entradas/salidas de bodega.
-- Deploy en AWS EC2.
-- Tecnologías: OWL, QWeb, REST, AWS EC2, Docker, OpenAI, PostgreSQL.
-
-REEMPLAZO - Fábrica de Calzados Gino S.A. (Enero 2025 - Junio 2025)
-Desarrollador ERP Odoo 17.
-- Módulos para crear, imprimir y etiquetar despachos en comercio exterior.
-- Sistema de manufactura de zapatos: edición, borrado y creación de fórmulas de fabricación.
-- Tecnologías: OWL, QWeb, REST, ReportLab, PostgreSQL.
-
-FREELANCE - AutoproGarage & Aeropost
-Desarrollador ERP Odoo 14.
-- Módulo de Compras para importación de repuestos mecánicos con panel de seguimiento en tiempo real.
-- Integración con FastAPI, Redis y N8N para automatización de flujos.
-- Chatbot conversacional con IA usando OpenAI + LangChain.
-- Integración de Stripe para pagos de productos automotrices.
-- Tecnologías: Odoo 14, QWeb, XML-RPC, REST, OpenAI API, LangChain, Streamlit, FastAPI, Redis, N8N, Docker, PostgreSQL.
-
-EMPLEO - Atentus (Septiembre 2021 - Abril 2024)
-Desarrollador FullStack IA, Odoo 17 y OutSystems 11. Monitoreo web y mobile.
-- Chatbot de asistencia en emergencias con Azure AI Search (indexado PDF), Azure Functions (Python), Copilot Studio y Make + GPT-4-turbo.
-- Copiloto conversacional para RRHH procesando PDFs con Python, FastAPI, PyPDF, Pandas, Numpy, LangChain, Streamlit, ChromaDB y GPT-4-turbo.
-- Pruebas de estrés para Scotiabank y app mobile con Python, Selenium, Appium y JavaScript.
-- Informes I14 para clientes bancarios: Scotiabank, Banco Bice, Banco Internacional, LarrainVial, Universidad San Sebastián. Visualización con Power BI y Grafana.
-
-EMPLEO - Indra Company (Febrero 2021 - Julio 2021)
-Desarrollador de software en ERP interno Odoo 14.
-- Módulos HR, CRM y Accounting.
-- Tecnologías: QWeb, XML-RPC, REST, PostgreSQL.
-
-EMPLEO - Apiux (Agosto 2017 - Noviembre 2020)
-Desarrollador FullStack para equipos del Ministerio de Salud y Ministerio de Defensa.
-- Sistema de Reclamos (Ministerio de Salud): Django DRF + React Native + MongoDB.
-- Reportería Pensiones Capredena (Ministerio de Defensa): Django DRF + React Native + MongoDB.
-- Calidad de Gas IoT (Metrogas): Flask SocketIO + FastAPI + MongoDB + JavaScript.
-- Testing con React Native Testing Library.
-
-=== EDUCACIÓN ===
-- Dibujante Proyectista, titulado - Duoc UC (2011-2013)
-- Ingeniería en Informática y Telecomunicaciones (4to año) - Duoc UC (2019-2025)
-
-=== CERTIFICACIONES ===
-- Python TOTAL - Advanced Programmer in 16 Days - Udemy, 30.5 hrs (Julio 2024)
-- React & TypeScript - The Complete Guide (+10 Projects) - Udemy, 57.1 hrs (Abril 2023)
-
-=== COMPATIBILIDADES CONOCIDAS (basado en experiencia real) ===
-- LangChain + FastAPI: Compatible y usado en producción (AutoproGarage, Eleccom). FastAPI sirve los endpoints, LangChain maneja el flujo de IA.
-- Odoo + Docker: Compatible y desplegado en AWS EC2 con Docker en Eleccom y AutoproGarage.
-- Odoo + OpenAI: Compatible, integrado en Eleccom (formularios inteligentes) y AutoproGarage (chatbot).
-- LangChain + ChromaDB: Usado en Atentus para el copiloto RRHH (RAG sobre PDFs).
-- Python + Redis + N8N: Usado en AutoproGarage para automatización de flujos en tiempo real.
-- Django + MongoDB: Usado en Apiux para sistemas del Ministerio de Salud y Defensa.
-- FastAPI + Streamlit: Usado en AutoproGarage y Atentus para prototipos IA y frontends de copiloto.
-- Odoo + QWeb + ReportLab: Experiencia en múltiples versiones de Odoo para generación de PDFs.
-- LangGraph + FastAPI: Proyecto Agente_IA_Reclutador en GitHub.
-- TypeScript + Axios + Cheerio: Proyecto Scraper_Pj (scraping sin navegador).
+FREELANCE - Eleccom Ingeniería Eléctrica (2025 - Actualidad). Desarrollador ERP Odoo 16.
+REEMPLAZO - Fábrica de Calzados Gino S.A. (Enero 2025 - Junio 2025). Desarrollador ERP Odoo 17.
+FREELANCE - AutoproGarage & Aeropost. Desarrollador ERP Odoo 14.
+EMPLEO - Atentus (Septiembre 2021 - Abril 2024). Desarrollador FullStack IA, Odoo 17 y OutSystems 11.
+EMPLEO - Indra Company (Febrero 2021 - Julio 2021). Desarrollador Odoo 14.
+EMPLEO - Apiux (Agosto 2017 - Noviembre 2020). Desarrollador FullStack.
 `;
 
 const historialInline = [];
 const historialToast  = [];
 
-/**
- * AHORA LLAMA A NUESTRO PROXY, NO DIRECTAMENTE A OPENAI
- * La API key esta SEGURA en el servidor
- */
 async function preguntarAlModelo(pregunta, historial) {
   const mensajes = [
     { role: "system", content: CONTEXTO_CV },
     ...historial,
     { role: "user", content: pregunta }
   ];
-
-  // Llamamos a NUESTRO proxy local, no a OpenAI directo
   const respuesta = await fetch("/api/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ mensajes: mensajes })
+    body: JSON.stringify({ mensajes })
   });
-
   if (!respuesta.ok) {
-    const errorDatos = await respuesta.json().catch(() => ({}));
-    throw new Error(errorDatos.error || `Error ${respuesta.status}`);
+    const err = await respuesta.json().catch(() => ({}));
+    throw new Error(err.error || `Error ${respuesta.status}`);
   }
-
   const datos = await respuesta.json();
-
-  if (!datos.ok) {
-    throw new Error(datos.error || "Error desconocido del servidor");
-  }
-
+  if (!datos.ok) throw new Error(datos.error || "Error desconocido");
   return datos.respuesta;
 }
 
 function agregarMensaje(contenedor, texto, esUsuario, esCompacto = false) {
-  const tamAvatar = esCompacto ? 'style="width:24px;height:24px;font-size:.7rem;"' : '';
+  const tamAvatar  = esCompacto ? 'style="width:24px;height:24px;font-size:.7rem;"' : '';
   const tamBurbuja = esCompacto ? 'style="font-size:.8rem;"' : '';
-  const claseRol = esUsuario ? 'usuario' : 'agente';
-  const iconoAvatar = esUsuario ? '👤' : '👽';
-
   const div = document.createElement('div');
-  div.className = `msg ${claseRol}`;
+  div.className = `msg ${esUsuario ? 'usuario' : 'agente'}`;
   div.innerHTML = `
-    <div class="msg-avatar" ${tamAvatar}>${iconoAvatar}</div>
+    <div class="msg-avatar" ${tamAvatar}>${esUsuario ? '👤' : '👽'}</div>
     <div class="msg-burbuja" ${tamBurbuja}>${texto}</div>
   `;
-
   const typing = contenedor.querySelector('.chat-typing, #toast-typing');
   contenedor.insertBefore(div, typing);
   contenedor.scrollTop = contenedor.scrollHeight;
 }
 
-function mostrarTyping(typingEl, mostrar) {
-  typingEl.style.display = mostrar ? 'flex' : 'none';
-  if (mostrar) typingEl.closest('.chat-mensajes, .toast-mensajes').scrollTop = 999999;
+function mostrarTyping(el, mostrar) {
+  el.style.display = mostrar ? 'flex' : 'none';
+  if (mostrar) el.closest('.chat-mensajes, .toast-mensajes').scrollTop = 999999;
 }
 
-// ============================================================
-// CHAT INLINE
-// ============================================================
 const chatMensajes = document.getElementById('chat-mensajes');
 const chatInput    = document.getElementById('chat-input');
 const chatSend     = document.getElementById('chat-send');
@@ -689,89 +596,65 @@ const chatTyping   = document.getElementById('chat-typing');
 
 async function enviarChatInline(pregunta) {
   if (!pregunta.trim()) return;
-
   agregarMensaje(chatMensajes, pregunta, true);
   chatInput.value = '';
   chatSend.disabled = true;
   mostrarTyping(chatTyping, true);
-
   try {
-    const respuesta = await preguntarAlModelo(pregunta, historialInline);
-
-    historialInline.push({ role: "user", content: pregunta });
-    historialInline.push({ role: "assistant", content: respuesta });
-
+    const r = await preguntarAlModelo(pregunta, historialInline);
+    historialInline.push({ role:"user", content:pregunta });
+    historialInline.push({ role:"assistant", content:r });
     mostrarTyping(chatTyping, false);
-    agregarMensaje(chatMensajes, respuesta, false);
-  } catch (err) {
-    console.error("Error en chat inline:", err);
+    agregarMensaje(chatMensajes, r, false);
+  } catch(e) {
     mostrarTyping(chatTyping, false);
-    agregarMensaje(chatMensajes, '❌ No se pudo conectar con el servidor proxy. Asegurate de que este corriendo.', false);
+    agregarMensaje(chatMensajes, '❌ No se pudo conectar con el servidor proxy.', false);
   }
-
   chatSend.disabled = false;
   chatInput.focus();
 }
 
 chatSend.addEventListener('click', () => enviarChatInline(chatInput.value));
-chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') enviarChatInline(chatInput.value); });
+chatInput.addEventListener('keydown', e => { if(e.key==='Enter') enviarChatInline(chatInput.value); });
+document.querySelectorAll('.sug-btn').forEach(b => b.addEventListener('click', () => enviarChatInline(b.dataset.q)));
 
-document.querySelectorAll('.sug-btn').forEach(btn => {
-  btn.addEventListener('click', () => enviarChatInline(btn.dataset.q));
-});
-
-// ============================================================
-// TOAST FLOTANTE
-// ============================================================
-const toastBtn     = document.getElementById('toast-btn');
-const toastPanel   = document.getElementById('toast-panel');
-const toastCerrar  = document.getElementById('toast-cerrar');
-const toastBadge   = document.getElementById('toast-badge');
-const toastMensajes= document.getElementById('toast-mensajes');
-const toastInput   = document.getElementById('toast-input');
-const toastSend    = document.getElementById('toast-send');
-const toastTyping  = document.getElementById('toast-typing');
+const toastBtn      = document.getElementById('toast-btn');
+const toastPanel    = document.getElementById('toast-panel');
+const toastCerrar   = document.getElementById('toast-cerrar');
+const toastBadge    = document.getElementById('toast-badge');
+const toastMensajes = document.getElementById('toast-mensajes');
+const toastInput    = document.getElementById('toast-input');
+const toastSend     = document.getElementById('toast-send');
+const toastTyping   = document.getElementById('toast-typing');
 
 toastBtn.addEventListener('click', () => {
   toastPanel.classList.toggle('abierto');
-  if (toastPanel.classList.contains('abierto')) {
-    toastBadge.style.display = 'none';
-    toastInput.focus();
-  }
+  if (toastPanel.classList.contains('abierto')) { toastBadge.style.display='none'; toastInput.focus(); }
 });
-
-toastCerrar.addEventListener('click', () => {
-  toastPanel.classList.remove('abierto');
-});
+toastCerrar.addEventListener('click', () => toastPanel.classList.remove('abierto'));
 
 async function enviarToast(pregunta) {
   if (!pregunta.trim()) return;
-
   agregarMensaje(toastMensajes, pregunta, true, true);
   toastInput.value = '';
   toastSend.disabled = true;
   mostrarTyping(toastTyping, true);
-
   try {
-    const respuesta = await preguntarAlModelo(pregunta, historialToast);
-
-    historialToast.push({ role: "user", content: pregunta });
-    historialToast.push({ role: "assistant", content: respuesta });
-
+    const r = await preguntarAlModelo(pregunta, historialToast);
+    historialToast.push({ role:"user", content:pregunta });
+    historialToast.push({ role:"assistant", content:r });
     mostrarTyping(toastTyping, false);
-    agregarMensaje(toastMensajes, respuesta, false, true);
-  } catch (err) {
-    console.error("Error en toast:", err);
+    agregarMensaje(toastMensajes, r, false, true);
+  } catch(e) {
     mostrarTyping(toastTyping, false);
-    agregarMensaje(toastMensajes, '❌ Error de conexion con el servidor proxy.', false, true);
+    agregarMensaje(toastMensajes, '❌ Error de conexion.', false, true);
   }
-
   toastSend.disabled = false;
   toastInput.focus();
 }
 
 toastSend.addEventListener('click', () => enviarToast(toastInput.value));
-toastInput.addEventListener('keydown', e => { if (e.key === 'Enter') enviarToast(toastInput.value); });
+toastInput.addEventListener('keydown', e => { if(e.key==='Enter') enviarToast(toastInput.value); });
 </script>
 
 </body>
