@@ -509,6 +509,7 @@
   </div>
 </div>
 
+
 <script>
 const CONTEXTO_CV = `
 Eres el asistente virtual de Marco Antonio Acevedo Garrido, desarrollador FullStack e IA con sede en Santiago, Chile.
@@ -543,7 +544,6 @@ EMPLEO - Indra Company (Febrero 2021 - Julio 2021). Desarrollador Odoo 14.
 EMPLEO - Apiux (Agosto 2017 - Noviembre 2020). Desarrollador FullStack.
 `;
 
-// ========== CHAT INLINE ==========
 const chatMensajes = document.getElementById('chat-mensajes');
 const chatInput = document.getElementById('chat-input');
 const chatSend = document.getElementById('chat-send');
@@ -595,7 +595,6 @@ async function preguntarAlModelo(pregunta, historial) {
     return datos.respuesta;
 }
 
-// CHAT INLINE
 async function enviarChatInline(pregunta) {
     if (!pregunta.trim()) return;
     if (chatEnProgreso) return;
@@ -614,7 +613,7 @@ async function enviarChatInline(pregunta) {
         agregarMensaje(chatMensajes, r, false);
     } catch (e) {
         mostrarTyping(chatTyping, false);
-        agregarMensaje(chatMensajes, '❌ ' + e.message, false);
+        agregarMensaje(chatMensajes, 'x ' + e.message, false);
     }
     
     chatSend.disabled = false;
@@ -642,7 +641,6 @@ document.querySelectorAll('.sug-btn').forEach(function(boton) {
     });
 });
 
-// ========== TOAST CHAT ==========
 const toastBtn = document.getElementById('toast-btn');
 const toastPanel = document.getElementById('toast-panel');
 const toastCerrar = document.getElementById('toast-cerrar');
@@ -704,6 +702,59 @@ toastInput.addEventListener('keydown', function(e) {
         enviarToast(toastInput.value);
     }
 });
+
+const FETCH_TIMEOUT = 30000; // 30 segundos
+
+async function fetchWithTimeout(url, options, timeout = FETCH_TIMEOUT) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeout);
+    
+    try {
+        const response = await fetch(url, {
+            ...options,
+            signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+        return response;
+    } catch (error) {
+        clearTimeout(timeoutId);
+        if (error.name === 'AbortError') {
+            throw new Error('La petición tardó demasiado tiempo. Intenta de nuevo.');
+        }
+        throw error;
+    }
+}
+
+const preguntarAlModeloOriginal = preguntarAlModelo;
+
+preguntarAlModelo = async function(pregunta, historial) {
+    const mensajes = [
+        { role: "system", content: CONTEXTO_CV },
+        ...historial,
+        { role: "user", content: pregunta }
+    ];
+    
+    const respuesta = await fetchWithTimeout("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mensajes })
+    }, 60000); // 60 segundos para respuestas largas
+    
+    if (!respuesta.ok) {
+        const err = await respuesta.json().catch(() => ({}));
+        throw new Error(err.error || `Error ${respuesta.status}`);
+    }
+    const datos = await respuesta.json();
+    if (!datos.ok) throw new Error(datos.error || "Error desconocido");
+    return datos.respuesta;
+};
+
+if (window._chatTimers) {
+    window._chatTimers.forEach(timer => clearInterval(timer));
+    window._chatTimers = [];
+}
+
+console.log('Chat configurado: 1 petición a la vez, timeout de 60s');
 </script>
 
 </body>
