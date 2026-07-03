@@ -1,7 +1,6 @@
 {
   "name": "portafolio-marco",
   "version": "1.0.0",
-  "description": "Portafolio con IA integrada",
   "scripts": {
     "start": "node servidor-proxy.js"
   },
