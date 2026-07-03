@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "servidor-proxy.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "servidor-proxy.js" }
+  ]
+}

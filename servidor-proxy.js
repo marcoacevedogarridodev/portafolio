@@ -72,7 +72,13 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
-app.listen(PUERTO, () => {
-    console.log(`✅ Servidor corriendo en http://localhost:${PUERTO}`);
-    console.log(`🔑 Usando modelo: ${MODELO}`);
-});
+// Solo levantamos el servidor con listen() en local.
+// En Vercel, la función serverless envuelve la app exportada abajo.
+if (process.env.VERCEL !== '1') {
+    app.listen(PUERTO, () => {
+        console.log(`✅ Servidor corriendo en http://localhost:${PUERTO}`);
+        console.log(`🔑 Usando modelo: ${MODELO}`);
+    });
+}
+
+module.exports = app;
