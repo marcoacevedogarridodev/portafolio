@@ -232,7 +232,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <span class="nav-logo">CV MarcoAG</span>
   <ul class="nav-links">
@@ -243,7 +242,6 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-badge">Disponibilidad inmediata</div>
   <h1>Marco Acevedo Garrido<br><span>Desarrollador FullStack & IA</span></h1>
@@ -254,7 +252,6 @@
   </div>
 </section>
 
-<!-- STACK -->
 <section class="seccion">
   <p class="seccion-titulo">Stack tecnologico</p>
   <div class="chips">
@@ -272,7 +269,6 @@
   </div>
 </section>
 
-<!-- PROYECTOS -->
 <section class="seccion" id="proyectos">
   <p class="seccion-titulo">Proyectos publicos en GitHub · <a href="https://github.com/marcoacevedogarridodev?tab=repositories" target="_blank" style="color:var(--verde);text-decoration:none;">ver todos →</a></p>
   <div class="grid-proyectos">
@@ -286,8 +282,8 @@
 
     <a class="card" href="https://github.com/marcoacevedogarridodev/Scraper_Pj" target="_blank">
       <div class="card-icon"></div>
-      <h3>Scraper Poder Judicial</h3>
-      <p>Scraper en TypeScript que hace scraping al sitio web del Poder Judicial del Peru. Maneja paginacion JSF, descarga PDFS.</p>
+      <h3>Scraper</h3>
+      <p>Scraper en TypeScript que hace scraping al sitio web del Poder Judicial. Maneja paginacion JSF, descarga PDFS.</p>
       <div class="card-tags"><span class="tag">TypeScript</span><span class="tag">Axios</span><span class="tag">Cheerio</span></div>
     </a>
 
@@ -357,7 +353,6 @@
   </div>
 </section>
 
-<!-- EXPERIENCIA -->
 <section class="seccion" id="experiencia">
   <p class="seccion-titulo">Experiencia</p>
   <div class="timeline">
@@ -433,7 +428,6 @@
   </div>
 </section>
 
-<!-- CONSULTA IA -->
 <section class="chat-inline" id="consulta-ia">
   <p class="seccion-titulo">Consulta IA</p>
   <p class="chat-inline-sub">
@@ -470,7 +464,6 @@
   </div>
 </section>
 
-<!-- CONTACTO -->
 <section class="contacto" id="contacto">
   <h2>¿Hablamos?</h2>
   <p>Disponibilidad inmediata · Santiago, Chile</p>
@@ -483,7 +476,6 @@
 
 <footer>© 2026 Marco Antonio Acevedo Garrido - Desarrollador FullStack & IA</footer>
 
-<!-- TOAST FLOTANTE -->
 <button class="toast-btn" id="toast-btn" title="Hablar con el asistente de Marco">
   🕵️
   <span class="toast-badge" id="toast-badge">1</span>
@@ -606,7 +598,7 @@ async function preguntarAlModelo(pregunta, historial) {
 // CHAT INLINE
 async function enviarChatInline(pregunta) {
     if (!pregunta.trim()) return;
-    if (chatEnProgreso) return; // 🔥 EVITA PETICIONES MÚLTIPLES
+    if (chatEnProgreso) return;
     
     chatEnProgreso = true;
     agregarMensaje(chatMensajes, pregunta, true);
@@ -630,7 +622,6 @@ async function enviarChatInline(pregunta) {
     chatInput.focus();
 }
 
-// 🔥 EVENTOS - SOLO UNA VEZ
 chatSend.addEventListener('click', function(e) {
     e.preventDefault();
     enviarChatInline(chatInput.value);
@@ -643,7 +634,6 @@ chatInput.addEventListener('keydown', function(e) {
     }
 });
 
-// 🔥 SUGERENCIAS - SOLO UNA VEZ
 document.querySelectorAll('.sug-btn').forEach(function(boton) {
     boton.addEventListener('click', function(e) {
         e.preventDefault();
@@ -679,7 +669,7 @@ toastCerrar.addEventListener('click', function() {
 
 async function enviarToast(pregunta) {
     if (!pregunta.trim()) return;
-    if (toastEnProgreso) return; // 🔥 EVITA PETICIONES MÚLTIPLES
+    if (toastEnProgreso) return;
     
     toastEnProgreso = true;
     agregarMensaje(toastMensajes, pregunta, true, true);
@@ -714,11 +704,6 @@ toastInput.addEventListener('keydown', function(e) {
         enviarToast(toastInput.value);
     }
 });
-
-console.log('✅ Chat iniciado correctamente - solo una petición a la vez');
-
-toastSend.addEventListener('click', () => enviarToast(toastInput.value));
-toastInput.addEventListener('keydown', e => { if(e.key==='Enter') enviarToast(toastInput.value); });
 </script>
 
 </body>
