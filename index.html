@@ -6,12 +6,12 @@
   <title>Marco Acevedo - Desarrollador FullStack & IA</title>
   <style>
     :root {
-      --gris-bg:   #fbfbfb;
+      --gris-bg:   #e7e7e7;
       --gris-card: #f6f6f6;
       --borde:     #e5e5e5;
       --verde:     #0070f3;
       --texto:     #111111;
-      --muted:     #666666;
+      --muted:     #111111;
       --blanco:    #111111;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -25,18 +25,7 @@
       display:flex; justify-content:space-between; align-items:center;
       padding:16px 40px;
     }
-    .nav-logo { 
-      font-size:1rem; font-weight:700; color:var(--verde); 
-      letter-spacing:.05em; text-transform:uppercase; 
-      display:flex; align-items:center; gap:10px;
-    }
-    .nav-logo img {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 2px solid var(--verde);
-      object-fit: cover;
-    }
+    .nav-logo { font-size:1rem; font-weight:700; color:var(--verde); letter-spacing:.05em; text-transform:uppercase; }
     .nav-links { display:flex; gap:28px; list-style:none; }
     .nav-links a { color:var(--muted); text-decoration:none; font-size:.85rem; transition:color .2s; }
     .nav-links a:hover { color:var(--verde); }
@@ -126,15 +115,12 @@
     .msg.usuario { align-self:flex-end; flex-direction:row-reverse; }
     .msg.agente  { align-self:flex-start; }
     .msg-avatar {
-      width:32px; height:32px; border-radius:50%;
-      border:2px solid var(--verde);
-      overflow:hidden;
-      flex-shrink:0;
+      width:28px; height:28px; border-radius:50%;
+      background:#f0f0f0; border:1px solid rgba(0,112,243,.2);
+      display:flex; align-items:center; justify-content:center;
+      font-size:.8rem; flex-shrink:0;
     }
-    .msg-avatar img {
-      width:100%; height:100%; object-fit:cover;
-    }
-    .msg.usuario .msg-avatar { border-color:rgba(0,112,243,.6); }
+    .msg.usuario .msg-avatar { background:rgba(0,112,243,.1); border-color:rgba(0,112,243,.3); }
     .msg-burbuja { padding:10px 14px; border-radius:10px; font-size:.85rem; line-height:1.55; }
     .msg.agente  .msg-burbuja { background:#ffffff; color:var(--texto); border:1px solid var(--borde); }
     .msg.usuario .msg-burbuja { background:rgba(0,112,243,.1); color:#0050b3; }
@@ -160,6 +146,10 @@
     }
     .chat-send:hover { background:#0060df; }
     .chat-send:disabled { background:#e5e5e5; color:var(--muted); cursor:not-allowed; }
+
+    .tl-content {
+      background:var(--gris-card); border:1px solid var(--borde); border-radius:12px; padding:16px;
+    }
 
     /* TOAST */
     .toast-btn {
@@ -196,14 +186,7 @@
       background:#f6f6f6;
     }
     .toast-header-left { display:flex; align-items:center; gap:10px; }
-    .toast-avatar { 
-      width:32px; height:32px; border-radius:50%; 
-      border:2px solid var(--verde);
-      overflow:hidden;
-    }
-    .toast-avatar img {
-      width:100%; height:100%; object-fit:cover;
-    }
+    .toast-avatar { width:32px; height:32px; border-radius:50%; background:#eff6ff; border:1px solid rgba(0,112,243,.2); display:flex; align-items:center; justify-content:center; font-size:1rem; }
     .toast-title { font-size:.88rem; font-weight:700; color:#111111; }
     .toast-sub { font-size:.7rem; color:var(--verde); }
     .toast-cerrar { background:none; border:none; color:var(--muted); font-size:1.1rem; cursor:pointer; padding:4px; transition:color .2s; }
@@ -251,10 +234,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">
-    <img src="/home/workdir/attachments/icon.jpeg" alt="Marco Acevedo Logo">
-    CV MarcoAG
-  </a>
+  <span class="nav-logo">CV MarcoAG</span>
   <ul class="nav-links">
     <li><a href="#proyectos">Proyectos</a></li>
     <li><a href="#experiencia">Experiencia</a></li>
@@ -473,17 +453,13 @@
   <div class="chat-box">
     <div class="chat-mensajes" id="chat-mensajes">
       <div class="msg agente">
-        <div class="msg-avatar">
-          <img src="/home/workdir/attachments/icon.jpeg" alt="Marco Logo">
-        </div>
+        <div class="msg-avatar">🕵️</div>
         <div class="msg-burbuja">
-          Hola, Soy el asistente de MarcoAG. Puedes preguntarme sobre su experiencia, tecnologias, proyectos o compatibilidades entre herramientas. ¿En qué te puedo ayudar?
+          Hola, Soy el asistente creado por MarcoAG puedes preguntarme sobre su experiencia, tecnologias, proyectos o compatibilidades entre herramientas que usa. En que te puedo ayudar?
         </div>
       </div>
       <div class="chat-typing msg agente" id="chat-typing">
-        <div class="msg-avatar">
-          <img src="/home/workdir/attachments/icon.jpeg" alt="Marco Logo">
-        </div>
+        <div class="msg-avatar">🕵️</div>
         <div class="dot-bounce"><span></span><span></span><span></span></div>
       </div>
     </div>
@@ -509,16 +485,13 @@
 
 <!-- TOAST FLOTANTE -->
 <button class="toast-btn" id="toast-btn" title="Hablar con el asistente de Marco">
-  <img src="/home/workdir/attachments/icon.jpeg" alt="Marco Logo" style="width:32px;height:32px;border-radius:50%;border:2px solid white;">
+  🕵️
   <span class="toast-badge" id="toast-badge">1</span>
 </button>
 
 <div class="toast-panel" id="toast-panel">
   <div class="toast-header">
     <div class="toast-header-left">
-      <div class="toast-avatar">
-        <img src="/home/workdir/attachments/icon.jpeg" alt="Marco Logo">
-      </div>
       <div>
         <div class="toast-title">Asistente de Marco</div>
         <div class="toast-sub">● En linea - responde sobre el CV</div>
@@ -528,17 +501,13 @@
   </div>
   <div class="toast-mensajes" id="toast-mensajes">
     <div class="msg agente">
-      <div class="msg-avatar" style="width:28px;height:28px;">
-        <img src="/home/workdir/attachments/icon.jpeg" alt="Marco Logo">
-      </div>
+      <div class="msg-avatar" style="width:24px;height:24px;font-size:.7rem;">🕵️</div>
       <div class="msg-burbuja" style="font-size:.8rem;">
-        Hola! ¿Tienes dudas sobre experiencia o tecnologías? Pregúntame lo que quieras.
+        Hola! Tienes dudas sobre experiencia o tecnologias? Preguntame lo que quieras.
       </div>
     </div>
     <div class="chat-typing msg agente" id="toast-typing" style="display:none;">
-      <div class="msg-avatar" style="width:28px;height:28px;">
-        <img src="/home/workdir/attachments/icon.jpeg" alt="Marco Logo">
-      </div>
+      <div class="msg-avatar" style="width:24px;height:24px;font-size:.7rem;">🕵️</div>
       <div class="dot-bounce"><span></span><span></span><span></span></div>
     </div>
   </div>
@@ -606,20 +575,16 @@ async function preguntarAlModelo(pregunta, historial) {
 }
 
 function agregarMensaje(contenedor, texto, esUsuario, esCompacto = false) {
+  const tamAvatar  = esCompacto ? 'style="width:24px;height:24px;font-size:.7rem;"' : '';
+  const tamBurbuja = esCompacto ? 'style="font-size:.8rem;"' : '';
   const div = document.createElement('div');
   div.className = `msg ${esUsuario ? 'usuario' : 'agente'}`;
-  
-  const avatarHTML = esUsuario 
-    ? `<div class="msg-avatar"><span style="font-size:18px;">👤</span></div>` 
-    : `<div class="msg-avatar"><img src="/home/workdir/attachments/icon.jpeg" alt="Marco Logo"></div>`;
-  
   div.innerHTML = `
-    ${avatarHTML}
-    <div class="msg-burbuja" ${esCompacto ? 'style="font-size:.8rem;"' : ''}>${texto}</div>
+    <div class="msg-avatar" ${tamAvatar}>${esUsuario ? '👤' : '🕵️'}</div>
+    <div class="msg-burbuja" ${tamBurbuja}>${texto}</div>
   `;
   const typing = contenedor.querySelector('.chat-typing, #toast-typing');
-  if (typing) contenedor.insertBefore(div, typing);
-  else contenedor.appendChild(div);
+  contenedor.insertBefore(div, typing);
   contenedor.scrollTop = contenedor.scrollHeight;
 }
 
@@ -668,10 +633,7 @@ const toastTyping   = document.getElementById('toast-typing');
 
 toastBtn.addEventListener('click', () => {
   toastPanel.classList.toggle('abierto');
-  if (toastPanel.classList.contains('abierto')) { 
-    toastBadge.style.display='none'; 
-    toastInput.focus(); 
-  }
+  if (toastPanel.classList.contains('abierto')) { toastBadge.style.display='none'; toastInput.focus(); }
 });
 toastCerrar.addEventListener('click', () => toastPanel.classList.remove('abierto'));
 
