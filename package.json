@@ -6,6 +6,6 @@
     "vercel-build": "echo Hello"
   },
   "dependencies": {
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.6.1"
   }
 }
