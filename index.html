@@ -551,111 +551,171 @@ EMPLEO - Indra Company (Febrero 2021 - Julio 2021). Desarrollador Odoo 14.
 EMPLEO - Apiux (Agosto 2017 - Noviembre 2020). Desarrollador FullStack.
 `;
 
-const historialInline = [];
-const historialToast  = [];
+// ========== CHAT INLINE ==========
+const chatMensajes = document.getElementById('chat-mensajes');
+const chatInput = document.getElementById('chat-input');
+const chatSend = document.getElementById('chat-send');
+const chatTyping = document.getElementById('chat-typing');
 
-async function preguntarAlModelo(pregunta, historial) {
-  const mensajes = [
-    { role: "system", content: CONTEXTO_CV },
-    ...historial,
-    { role: "user", content: pregunta }
-  ];
-  const respuesta = await fetch("/api/chat", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ mensajes })
-  });
-  if (!respuesta.ok) {
-    const err = await respuesta.json().catch(() => ({}));
-    throw new Error(err.error || `Error ${respuesta.status}`);
-  }
-  const datos = await respuesta.json();
-  if (!datos.ok) throw new Error(datos.error || "Error desconocido");
-  return datos.respuesta;
-}
+let historialInline = [];
+let chatEnProgreso = false;
 
 function agregarMensaje(contenedor, texto, esUsuario, esCompacto = false) {
-  const tamAvatar  = esCompacto ? 'style="width:24px;height:24px;font-size:.7rem;"' : '';
-  const tamBurbuja = esCompacto ? 'style="font-size:.8rem;"' : '';
-  const div = document.createElement('div');
-  div.className = `msg ${esUsuario ? 'usuario' : 'agente'}`;
-  div.innerHTML = `
-    <div class="msg-avatar" ${tamAvatar}>${esUsuario ? '👤' : '🕵️'}</div>
-    <div class="msg-burbuja" ${tamBurbuja}>${texto}</div>
-  `;
-  const typing = contenedor.querySelector('.chat-typing, #toast-typing');
-  contenedor.insertBefore(div, typing);
-  contenedor.scrollTop = contenedor.scrollHeight;
+    const tamAvatar = esCompacto ? 'style="width:24px;height:24px;font-size:.7rem;"' : '';
+    const tamBurbuja = esCompacto ? 'style="font-size:.8rem;"' : '';
+    const div = document.createElement('div');
+    div.className = `msg ${esUsuario ? 'usuario' : 'agente'}`;
+    div.innerHTML = `
+        <div class="msg-avatar" ${tamAvatar}>${esUsuario ? '👤' : '🕵️'}</div>
+        <div class="msg-burbuja" ${tamBurbuja}>${texto}</div>
+    `;
+    const typing = contenedor.querySelector('.chat-typing, #toast-typing');
+    contenedor.insertBefore(div, typing);
+    contenedor.scrollTop = contenedor.scrollHeight;
 }
 
 function mostrarTyping(el, mostrar) {
-  el.style.display = mostrar ? 'flex' : 'none';
-  if (mostrar) el.closest('.chat-mensajes, .toast-mensajes').scrollTop = 999999;
+    if (!el) return;
+    el.style.display = mostrar ? 'flex' : 'none';
+    if (mostrar) {
+        const parent = el.closest('.chat-mensajes, .toast-mensajes');
+        if (parent) parent.scrollTop = 999999;
+    }
 }
 
-const chatMensajes = document.getElementById('chat-mensajes');
-const chatInput    = document.getElementById('chat-input');
-const chatSend     = document.getElementById('chat-send');
-const chatTyping   = document.getElementById('chat-typing');
+async function preguntarAlModelo(pregunta, historial) {
+    const mensajes = [
+        { role: "system", content: CONTEXTO_CV },
+        ...historial,
+        { role: "user", content: pregunta }
+    ];
+    const respuesta = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mensajes })
+    });
+    if (!respuesta.ok) {
+        const err = await respuesta.json().catch(() => ({}));
+        throw new Error(err.error || `Error ${respuesta.status}`);
+    }
+    const datos = await respuesta.json();
+    if (!datos.ok) throw new Error(datos.error || "Error desconocido");
+    return datos.respuesta;
+}
 
+// CHAT INLINE
 async function enviarChatInline(pregunta) {
-  if (!pregunta.trim()) return;
-  agregarMensaje(chatMensajes, pregunta, true);
-  chatInput.value = '';
-  chatSend.disabled = true;
-  mostrarTyping(chatTyping, true);
-  try {
-    const r = await preguntarAlModelo(pregunta, historialInline);
-    historialInline.push({ role:"user", content:pregunta });
-    historialInline.push({ role:"assistant", content:r });
-    mostrarTyping(chatTyping, false);
-    agregarMensaje(chatMensajes, r, false);
-  } catch(e) {
-    mostrarTyping(chatTyping, false);
-    agregarMensaje(chatMensajes, '❌ No se pudo conectar con el servidor proxy.', false);
-  }
-  chatSend.disabled = false;
-  chatInput.focus();
+    if (!pregunta.trim()) return;
+    if (chatEnProgreso) return; // 🔥 EVITA PETICIONES MÚLTIPLES
+    
+    chatEnProgreso = true;
+    agregarMensaje(chatMensajes, pregunta, true);
+    chatInput.value = '';
+    chatSend.disabled = true;
+    mostrarTyping(chatTyping, true);
+    
+    try {
+        const r = await preguntarAlModelo(pregunta, historialInline);
+        historialInline.push({ role: "user", content: pregunta });
+        historialInline.push({ role: "assistant", content: r });
+        mostrarTyping(chatTyping, false);
+        agregarMensaje(chatMensajes, r, false);
+    } catch (e) {
+        mostrarTyping(chatTyping, false);
+        agregarMensaje(chatMensajes, '❌ ' + e.message, false);
+    }
+    
+    chatSend.disabled = false;
+    chatEnProgreso = false;
+    chatInput.focus();
 }
 
-chatSend.addEventListener('click', () => enviarChatInline(chatInput.value));
-chatInput.addEventListener('keydown', e => { if(e.key==='Enter') enviarChatInline(chatInput.value); });
-document.querySelectorAll('.sug-btn').forEach(b => b.addEventListener('click', () => enviarChatInline(b.dataset.q)));
-
-const toastBtn      = document.getElementById('toast-btn');
-const toastPanel    = document.getElementById('toast-panel');
-const toastCerrar   = document.getElementById('toast-cerrar');
-const toastBadge    = document.getElementById('toast-badge');
-const toastMensajes = document.getElementById('toast-mensajes');
-const toastInput    = document.getElementById('toast-input');
-const toastSend     = document.getElementById('toast-send');
-const toastTyping   = document.getElementById('toast-typing');
-
-toastBtn.addEventListener('click', () => {
-  toastPanel.classList.toggle('abierto');
-  if (toastPanel.classList.contains('abierto')) { toastBadge.style.display='none'; toastInput.focus(); }
+// 🔥 EVENTOS - SOLO UNA VEZ
+chatSend.addEventListener('click', function(e) {
+    e.preventDefault();
+    enviarChatInline(chatInput.value);
 });
-toastCerrar.addEventListener('click', () => toastPanel.classList.remove('abierto'));
+
+chatInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        enviarChatInline(chatInput.value);
+    }
+});
+
+// 🔥 SUGERENCIAS - SOLO UNA VEZ
+document.querySelectorAll('.sug-btn').forEach(function(boton) {
+    boton.addEventListener('click', function(e) {
+        e.preventDefault();
+        chatInput.value = this.dataset.q;
+        enviarChatInline(this.dataset.q);
+    });
+});
+
+// ========== TOAST CHAT ==========
+const toastBtn = document.getElementById('toast-btn');
+const toastPanel = document.getElementById('toast-panel');
+const toastCerrar = document.getElementById('toast-cerrar');
+const toastBadge = document.getElementById('toast-badge');
+const toastMensajes = document.getElementById('toast-mensajes');
+const toastInput = document.getElementById('toast-input');
+const toastSend = document.getElementById('toast-send');
+const toastTyping = document.getElementById('toast-typing');
+
+let historialToast = [];
+let toastEnProgreso = false;
+
+toastBtn.addEventListener('click', function() {
+    toastPanel.classList.toggle('abierto');
+    if (toastPanel.classList.contains('abierto')) {
+        toastBadge.style.display = 'none';
+        toastInput.focus();
+    }
+});
+
+toastCerrar.addEventListener('click', function() {
+    toastPanel.classList.remove('abierto');
+});
 
 async function enviarToast(pregunta) {
-  if (!pregunta.trim()) return;
-  agregarMensaje(toastMensajes, pregunta, true, true);
-  toastInput.value = '';
-  toastSend.disabled = true;
-  mostrarTyping(toastTyping, true);
-  try {
-    const r = await preguntarAlModelo(pregunta, historialToast);
-    historialToast.push({ role:"user", content:pregunta });
-    historialToast.push({ role:"assistant", content:r });
-    mostrarTyping(toastTyping, false);
-    agregarMensaje(toastMensajes, r, false, true);
-  } catch(e) {
-    mostrarTyping(toastTyping, false);
-    agregarMensaje(toastMensajes, '❌ Error de conexion.', false, true);
-  }
-  toastSend.disabled = false;
-  toastInput.focus();
+    if (!pregunta.trim()) return;
+    if (toastEnProgreso) return; // 🔥 EVITA PETICIONES MÚLTIPLES
+    
+    toastEnProgreso = true;
+    agregarMensaje(toastMensajes, pregunta, true, true);
+    toastInput.value = '';
+    toastSend.disabled = true;
+    mostrarTyping(toastTyping, true);
+    
+    try {
+        const r = await preguntarAlModelo(pregunta, historialToast);
+        historialToast.push({ role: "user", content: pregunta });
+        historialToast.push({ role: "assistant", content: r });
+        mostrarTyping(toastTyping, false);
+        agregarMensaje(toastMensajes, r, false, true);
+    } catch (e) {
+        mostrarTyping(toastTyping, false);
+        agregarMensaje(toastMensajes, '❌ ' + e.message, false, true);
+    }
+    
+    toastSend.disabled = false;
+    toastEnProgreso = false;
+    toastInput.focus();
 }
+
+toastSend.addEventListener('click', function(e) {
+    e.preventDefault();
+    enviarToast(toastInput.value);
+});
+
+toastInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        enviarToast(toastInput.value);
+    }
+});
+
+console.log('✅ Chat iniciado correctamente - solo una petición a la vez');
 
 toastSend.addEventListener('click', () => enviarToast(toastInput.value));
 toastInput.addEventListener('keydown', e => { if(e.key==='Enter') enviarToast(toastInput.value); });
