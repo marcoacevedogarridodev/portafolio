@@ -38,7 +38,8 @@ module.exports = async (req, res) => {
         });
     }
 
-    const MODELO = 'gemini-1.5-flash'; // Usa este modelo más estable
+    // IMPORTANTE: Usa gemini-2.5-flash o gemini-1.5-flash
+    const MODELO = 'gemini-2.5-flash'; 
     const mensajeSystem = mensajes.find(m => m.role === 'system');
     const contents = mensajes
         .filter(m => m.role === 'user' || m.role === 'assistant')
