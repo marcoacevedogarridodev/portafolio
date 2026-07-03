@@ -560,7 +560,7 @@ async function preguntarAlModelo(pregunta, historial) {
     ...historial,
     { role: "user", content: pregunta }
   ];
-  const respuesta = await fetch("/api/chat", {
+  const respuesta = await fetch("/api/chat.js", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ mensajes })
