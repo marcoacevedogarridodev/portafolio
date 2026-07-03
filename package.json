@@ -1,15 +1,11 @@
 {
-  "name": "portafolio-marco-acevedo",
+  "name": "portafolio-marco",
   "version": "1.0.0",
-  "description": "Portafolio de Marco Acevedo con asistente IA",
-  "main": "servidor-proxy.js",
+  "description": "Portafolio con IA integrada",
   "scripts": {
-    "iniciar": "node servidor-proxy.js",
-    "dev": "node --watch servidor-proxy.js"
+    "vercel-build": "echo Hello"
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.0"
+    "dotenv": "^16.3.1"
   }
 }
