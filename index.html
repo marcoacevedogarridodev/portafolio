@@ -728,7 +728,7 @@ console.log('Chat configurado: 1 petición a la vez, timeout de 60s');
   if (!el) return;
 
   const textoFinal = "Desarrollador FullStack & IA";
-  const letrasError = 'abcdefghijklmnopqrstuvwxyzñ';
+  const letrasError = 'abcdefghijklmnopqrstuvwxyzñoopqrstvwxyz';
   let i = 0;
 
   function letraAleatoria() {
@@ -757,7 +757,7 @@ console.log('Chat configurado: 1 petición a la vez, timeout de 60s');
       i++;
       const caracterActual = textoFinal[i - 1];
       const pausaExtra = /[ &.,]/.test(caracterActual) ? 90 : 0;
-      const velocidad = 55 + Math.random() * 90 + pausaExtra;
+      const velocidad = 50 + Math.random() * 90 + pausaExtra;
       setTimeout(escribir, velocidad);
     }
   }
