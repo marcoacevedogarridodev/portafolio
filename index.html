@@ -43,6 +43,14 @@
     @keyframes pulso { 0%,100%{opacity:1} 50%{opacity:.3} }
     .hero h1 { font-size:clamp(2.4rem,5vw,3.8rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; color:#111111; margin-bottom:20px; }
     .hero h1 span { color:var(--verde); }
+    .rol-cursor {
+      display:inline-block;
+      color:var(--verde);
+      font-weight:600;
+      margin-left:2px;
+      animation: rolParpadeo .85s steps(1) infinite;
+    }
+    @keyframes rolParpadeo { 0%,49%{opacity:1} 50%,100%{opacity:0} }
     .hero > p { font-size:1.1rem; color:var(--muted); max-width:600px; margin-bottom:36px; }
     .hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
     .btn-primary { background:var(--verde); color:#ffffff; font-weight:700; font-size:.9rem; padding:12px 24px; border-radius:8px; text-decoration:none; transition:background .2s,transform .1s; }
@@ -246,7 +254,7 @@
 
 <section class="hero">
   <div class="hero-badge">Disponibilidad inmediata</div>
-  <h1>Marco Acevedo Garrido<br><span>Desarrollador FullStack & IA</span></h1>
+  <h1>Marco Acevedo Garrido<br><span id="rol-typewriter" class="rol-typewriter"></span><span class="rol-cursor">|</span></h1>
   <p>+8 años construyendo software en Python, Odoo y LangChain. Especializado en agentes de IA, automatizacion y ERP a medida.</p>
   <div class="hero-btns">
     <a href="#proyectos" class="btn-primary">Ver proyectos</a>
@@ -758,6 +766,60 @@ if (window._chatTimers) {
 }
 
 console.log('Chat configurado: 1 petición a la vez, timeout de 60s');
+</script>
+
+<script>
+(function () {
+  const el = document.getElementById('rol-typewriter');
+  if (!el) return;
+
+  const textoFinal = "Desarrollador FullStack & IA";
+  const letrasError = 'abcdefghijklmnopqrstuvwxyzñ';
+  let i = 0;
+
+  function letraAleatoria() {
+    return letrasError[Math.floor(Math.random() * letrasError.length)];
+  }
+
+  function escribir() {
+    if (i >= textoFinal.length) return;
+
+    // Probabilidad de "equivocarse" al escribir (menos hacia el final para que se vea limpio)
+    const probabilidadError = i < textoFinal.length - 2 ? 0.1 : 0;
+    const seEquivoca = Math.random() < probabilidadError;
+
+    if (seEquivoca) {
+      // Escribe una letra incorrecta
+      el.textContent += letraAleatoria();
+      const pausaNotar = 180 + Math.random() * 220; // se "da cuenta" del error
+      setTimeout(() => {
+        // Borra la letra incorrecta
+        el.textContent = el.textContent.slice(0, -1);
+        const pausaCorregir = 90 + Math.random() * 120;
+        setTimeout(escribir, pausaCorregir);
+      }, pausaNotar);
+    } else {
+      el.textContent += textoFinal[i];
+      i++;
+      const caracterActual = textoFinal[i - 1];
+      const pausaExtra = /[ &.,]/.test(caracterActual) ? 90 : 0;
+      const velocidad = 55 + Math.random() * 90 + pausaExtra;
+      setTimeout(escribir, velocidad);
+    }
+  }
+
+  function iniciar() {
+    el.textContent = '';
+    i = 0;
+    setTimeout(escribir, 450);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', iniciar);
+  } else {
+    iniciar();
+  }
+})();
 </script>
 
 </body>
