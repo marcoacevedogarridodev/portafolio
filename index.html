@@ -89,60 +89,70 @@
     .video-card-body h3 { font-size:.95rem; font-weight:700; color:#111111; margin-bottom:4px; }
     .video-card-body p { font-size:.82rem; color:var(--muted); }
 
-    /* TIMELINE — experiencia con linea de tiempo */
+    /* TIMELINE — con línea conectora */
     .timeline {
       display:flex;
       flex-direction:column;
       gap:0;
+      margin-left: 25%;
+      margin-right: 20%;
       position:relative;
-      padding-left: 30px;
-      margin-left: 10%;
-      margin-right: 10%;
+      padding-left:20px;
     }
     .timeline::before {
-      content: '';
-      position: absolute;
-      left: 8px;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: var(--borde);
-      border-radius: 4px;
+      content:'';
+      position:absolute;
+      left:80px;
+      top:20px;
+      bottom:20px;
+      width:2px;
+      background:var(--borde);
+      z-index:0;
     }
     .timeline-item {
-      position: relative;
-      padding: 20px 20px 20px 30px;
-      background: var(--gris-card);
-      border: 1px solid var(--borde);
-      border-radius: 12px;
-      margin-bottom: 24px;
-      transition: border-color .2s,transform .15s,box-shadow .15s;
+      display:grid;
+      grid-template-columns:80px 1fr;
+      gap:0 20px;
+      background:var(--gris-card);
+      border:1px solid var(--borde);
+      border-radius:12px;
+      padding:18px 20px;
+      transition:border-color .2s,transform .15s,box-shadow .15s;
+      position:relative;
+      z-index:1;
+      margin-bottom:20px;
     }
-    .timeline-item:last-child {
-      margin-bottom: 0;
-    }
+    .timeline-item:last-child { margin-bottom:0; }
     .timeline-item:hover {
-      border-color: var(--verde);
-      transform: translateY(-3px);
-      box-shadow: 0 4px 20px rgba(0,112,243,.1);
+      border-color:var(--verde);
+      transform:translateY(-3px);
+      box-shadow:0 4px 20px rgba(0,112,243,.1);
     }
+    /* punto en la línea */
     .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -26px;
-      top: 28px;
-      width: 14px;
-      height: 14px;
-      background: var(--verde);
-      border-radius: 50%;
-      border: 3px solid var(--gris-bg);
-      box-shadow: 0 0 0 3px var(--verde);
+      content:'';
+      position:absolute;
+      left:-20px;
+      top:24px;
+      width:12px;
+      height:12px;
+      background:var(--verde);
+      border-radius:50%;
+      border:2px solid var(--gris-bg);
+      z-index:2;
     }
     .tl-fecha {
       font-size:.78rem;
-      color:var(--verde);
+      color:var(--muted);
+      padding-top:2px;
       font-weight:600;
-      margin-bottom: 4px;
+      grid-column:1 / 2;
+    }
+    .tl-contenido {
+      grid-column:2 / 3;
+      display:flex;
+      flex-direction:column;
+      gap:2px;
     }
     .tl-empresa {
       font-weight:700;
@@ -151,14 +161,14 @@
     }
     .tl-rol {
       font-size:.82rem;
-      color:var(--muted);
-      margin-bottom: 4px;
+      color:var(--verde);
+      margin-bottom:4px;
     }
     .tl-desc {
       font-size:.82rem;
       color:var(--muted);
-      margin-top: 6px;
     }
+    .tl-linea { display:none; }
 
     /* CHAT INLINE */
     .chat-inline { padding:60px 40px; max-width:900px; margin:0 auto; border-top:1px solid var(--borde); }
@@ -303,18 +313,34 @@
       .hero,.seccion,.chat-inline,.contacto { padding-left:20px; padding-right:20px; }
       .hero { padding-top:60px; }
       .timeline {
-        margin-left: 0;
-        margin-right: 0;
-        padding-left: 30px;
+        margin-left:10px;
+        margin-right:10px;
+        padding-left:30px;
+      }
+      .timeline::before {
+        left:20px;
       }
       .timeline-item {
-        padding: 16px 16px 16px 24px;
+        grid-template-columns:1fr;
+        gap:6px 0;
+        padding:16px;
+        margin-bottom:16px;
       }
       .timeline-item::before {
-        left: -22px;
-        top: 24px;
-        width: 12px;
-        height: 12px;
+        left:-14px;
+        top:20px;
+        width:10px;
+        height:10px;
+      }
+      .tl-fecha {
+        grid-column:1;
+        text-align:left;
+        font-size:.7rem;
+        color:var(--verde);
+        font-weight:600;
+      }
+      .tl-contenido {
+        grid-column:1;
       }
       .toast-panel { width:calc(100vw - 32px); right:16px; bottom:80px; }
       .grid-produccion { grid-template-columns:1fr; }
@@ -424,38 +450,43 @@
   <div class="timeline">
 
     <div class="timeline-item">
-      <div class="tl-fecha">Freelance</div>
-      <div class="tl-empresa">Eleccom Ingenieria Electrica</div>
-      <div class="tl-rol">Desarrollador FullStack ERP Odoo 16+IA</div>
-      <div class="tl-desc">Creacion de modulo RRHH para ingreso de empleados, generacion de contratos, finiquitos, anexos y permisos en obra. Desarrollo de formularios inteligentes para creacion de PDFs integrando la API de OpenAI.</div>
+      <span class="tl-fecha">Freelance</span>
+      <div class="tl-contenido">
+        <div class="tl-empresa">Eleccom Ingenieria Electrica</div>
+        <div class="tl-rol">Desarrollador FullStack ERP Odoo 16+IA</div>
+      </div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-fecha">Freelance</div>
-      <div class="tl-empresa">AutoproGarage - Aeropost</div>
-      <div class="tl-rol">Desarrollador ERP Odoo 14+IA</div>
-      <div class="tl-desc">Despliegue en AWS EC2. Modulos para imprimir y etiquetar despachos, sistema de manufactura de calzado, modulo de Compras con tracking Aeropost. Integraciones con FastAPI, Redis, N8N. Chatbot con OpenAI y LangChain.</div>
+      <span class="tl-fecha">Freelance</span>
+      <div class="tl-contenido">
+        <div class="tl-empresa">AutoproGarage - Aeropost</div>
+        <div class="tl-rol">Desarrollador ERP Odoo 14+IA</div>
+      </div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-fecha">Ene-Jun 2025</div>
-      <div class="tl-empresa">Fabrica de Calzados Gino S.A.</div>
-      <div class="tl-rol">Desarrollador FullStack ERP Odoo 17</div>
-      <div class="tl-desc">Despliegue en AWS EC2. Modulos para imprimir y etiquetar despachos en comercio exterior. Sistema de manufactura de calzado: edicion, borrado y creacion de formulas de produccion.</div>
+      <span class="tl-fecha">Ene-Jun 2025</span>
+      <div class="tl-contenido">
+        <div class="tl-empresa">Fabrica de Calzados Gino S.A.</div>
+        <div class="tl-rol">Desarrollador FullStack ERP Odoo 17</div>
+      </div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-fecha">2021-2024</div>
-      <div class="tl-empresa">Atentus</div>
-      <div class="tl-rol">Desarrollador FullStack - OutSystems 11</div>
-      <div class="tl-desc">Desarrollo de modulos HR, CRM y Accounting. Chatbot de asistencia en emergencias con Azure AI Search, Copilot Studio y GPT-4 Turbo. Copiloto conversacional con Python, FastAPI, LangChain, ChromaDB y Streamlit.</div>
+      <span class="tl-fecha">2021-2024</span>
+      <div class="tl-contenido">
+        <div class="tl-empresa">Atentus</div>
+        <div class="tl-rol">Desarrollador FullStack - OutSystems 11</div>
+      </div>
     </div>
 
     <div class="timeline-item">
-      <div class="tl-fecha">2017-2020</div>
-      <div class="tl-empresa">Apiux</div>
-      <div class="tl-rol">Desarrollador backend Python</div>
-      <div class="tl-desc">Sistema de reclamos web para el Ministerio de Salud y sistema de reporteria de pensiones para el Ministerio de Defensa (Capredena) con Django REST Framework y React. Aplicacion IoT de calidad de gas para Metrogas con Flask SocketIO y FastAPI.</div>
+      <span class="tl-fecha">2017-2020</span>
+      <div class="tl-contenido">
+        <div class="tl-empresa">Apiux</div>
+        <div class="tl-rol">Desarrollador backend Python</div>
+      </div>
     </div>
 
   </div>
@@ -727,7 +758,7 @@ toastInput.addEventListener('keydown', function(e) {
     }
 });
 
-const FETCH_TIMEOUT = 30000;
+const FETCH_TIMEOUT = 30000; // 30 segundos
 
 async function fetchWithTimeout(url, options, timeout = FETCH_TIMEOUT) {
     const controller = new AbortController();
@@ -749,6 +780,8 @@ async function fetchWithTimeout(url, options, timeout = FETCH_TIMEOUT) {
     }
 }
 
+const preguntarAlModeloOriginal = preguntarAlModelo;
+
 preguntarAlModelo = async function(pregunta, historial) {
     const mensajes = [
         { role: "system", content: CONTEXTO_CV },
@@ -760,7 +793,7 @@ preguntarAlModelo = async function(pregunta, historial) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ mensajes })
-    }, 60000);
+    }, 60000); // 60 segundos para respuestas largas
     
     if (!respuesta.ok) {
         const err = await respuesta.json().catch(() => ({}));
@@ -788,24 +821,19 @@ console.log('Chat configurado: 1 petición a la vez, timeout de 60s');
   const letrasError = 'abcdefghijk';
   let i = 0;
   let timeoutId = null;
-  let detenido = false;
+  let enEjecucion = false;
 
   function letraAleatoria() {
     return letrasError[Math.floor(Math.random() * letrasError.length)];
   }
 
   function escribir() {
-    if (detenido || i >= textoFinal.length) {
-      // Si se completo, programar reinicio
-      if (i >= textoFinal.length && !detenido) {
-        timeoutId = setTimeout(() => {
-          if (!detenido) {
-            i = 0;
-            el.textContent = '';
-            escribir();
-          }
-        }, 10000); // 10 segundos
-      }
+    if (i >= textoFinal.length) {
+      // Terminó: esperar 10 segundos y reiniciar
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        reiniciar();
+      }, 10000);
       return;
     }
 
@@ -830,19 +858,18 @@ console.log('Chat configurado: 1 petición a la vez, timeout de 60s');
     }
   }
 
-  function iniciar() {
-    detenido = false;
+  function reiniciar() {
+    if (timeoutId) clearTimeout(timeoutId);
     el.textContent = '';
     i = 0;
-    if (timeoutId) clearTimeout(timeoutId);
     timeoutId = setTimeout(escribir, 450);
   }
 
-  // Limpiar timeouts si la pagina se descarga
-  window.addEventListener('beforeunload', function() {
-    if (timeoutId) clearTimeout(timeoutId);
-    detenido = true;
-  });
+  function iniciar() {
+    if (enEjecucion) return;
+    enEjecucion = true;
+    reiniciar();
+  }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', iniciar);
