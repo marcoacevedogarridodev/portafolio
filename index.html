@@ -29,20 +29,7 @@
 
     /* HERO */
     .hero { padding:180px 40px 80px; max-width:900px; margin:0 auto; }
-    .hero-badge {
-      display:inline-flex; align-items:center; gap:8px;
-      color:var(--verde); font-size:.78rem; font-weight:600;
-      letter-spacing:.1em; text-transform:uppercase;
-      padding:6px 14px; margin-bottom:28px;
-    }
-    .hero-badge::before {
-      content:''; width:7px; height:7px;
-      background:var(--verde); border-radius:50%;
-      animation:pulso 2s infinite;
-    }
-    @keyframes pulso { 0%,100%{opacity:1} 50%{opacity:.3} }
     .hero h1 { font-size:clamp(2.4rem,5vw,3.8rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; color:#111111; margin-bottom:20px; }
-    .hero h1 span { color:var(--verde); }
     .rol-cursor {
       display:inline-block;
       color:var(--verde);
@@ -53,297 +40,78 @@
     @keyframes rolParpadeo { 0%,49%{opacity:1} 50%,100%{opacity:0} }
     .hero > p { font-size:1.1rem; color:var(--muted); max-width:600px; margin-bottom:36px; }
     .hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
-    .btn-primary { background:var(--verde); color:#ffffff; font-weight:700; font-size:.9rem; padding:12px 24px; border-radius:8px; text-decoration:none; transition:background .2s,transform .1s; }
+    .btn-primary {
+      background:var(--verde); color:#ffffff; font-weight:700; font-size:.9rem;
+      padding:12px 24px; border-radius:8px; text-decoration:none;
+      border:none; cursor:pointer; font-family:var(--font-family);
+      transition:background .2s,transform .1s;
+    }
     .btn-primary:hover { background:#0060df; transform:translateY(-1px); }
-    .btn-secondary { border:1px solid var(--borde); color:var(--texto); font-size:.9rem; padding:12px 24px; border-radius:8px; text-decoration:none; transition:border-color .2s,color .2s; }
+    .btn-secondary {
+      border:1px solid var(--borde); color:var(--texto); font-size:.9rem;
+      padding:12px 24px; border-radius:8px; text-decoration:none;
+      background:transparent; cursor:pointer; font-family:var(--font-family);
+      transition:border-color .2s,color .2s;
+    }
     .btn-secondary:hover { border-color:var(--verde); color:var(--verde); }
 
     /* SECCIONES */
-    .seccion { padding:60px 40px; max-width:900px; margin:0 auto; border-top:1px solid var(--borde); }
+    .seccion { padding:60px 40px; max-width:1100px; margin:0 auto; border-top:1px solid var(--borde); }
     .seccion-titulo { font-size:.75rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:32px; }
 
-    /* CHIPS */
-    .chips { display:flex; flex-wrap:wrap; gap:10px; }
-    .chip { background:var(--gris-card); border:1px solid var(--borde); color:var(--texto); font-size:.8rem; padding:6px 14px; border-radius:6px; }
-    .chip.destacado { border-color:rgba(0,112,243,.35); color:var(--verde); background:rgba(0,112,243,.05); }
-
-    /* GRID PROYECTOS */
-    .grid-proyectos { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
-    .card { background:var(--gris-card); border:1px solid var(--borde); border-radius:12px; padding:24px; text-decoration:none; color:inherit; transition:border-color .2s,transform .15s,box-shadow .15s; display:flex; flex-direction:column; gap:12px; }
-    .card:hover { border-color:var(--verde); transform:translateY(-3px); box-shadow:0 4px 20px rgba(0,112,243,.1); }
-    .card-icon { font-size:1.6rem; line-height:1; }
-    .card h3 { font-size:.95rem; font-weight:700; color:#111111; }
-    .card p  { font-size:.82rem; color:var(--muted); flex:1; }
-    .card-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
-    .tag { background:rgba(0,112,243,.07); border:1px solid rgba(0,112,243,.2); color:var(--verde); font-size:.7rem; font-weight:600; padding:2px 8px; border-radius:4px; letter-spacing:.05em; }
-
-    /* GRID PRODUCCION (videos propios) */
-    .grid-produccion { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px; }
-    .video-card { padding:0; overflow:hidden; gap:0; }
+    /* GRID PRODUCCION (5 videos, una sola fila) */
+    .grid-produccion { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
+    .video-card {
+      background:var(--gris-card); border:1px solid var(--borde); border-radius:12px;
+      padding:0; overflow:hidden; display:flex; flex-direction:column;
+      transition:border-color .2s,transform .15s,box-shadow .15s;
+    }
     .video-card:hover { transform:translateY(-3px); box-shadow:0 4px 20px rgba(0,112,243,.1); border-color:var(--verde); }
     .video-wrapper { position:relative; width:100%; aspect-ratio:16/9; background:#000; overflow:hidden; }
-    .video-wrapper video {
-      width:100%; height:100%; object-fit:cover; display:block; background:#000;
-    }
-    .video-card-body { padding:18px 20px 22px; }
-    .video-card-body h3 { font-size:.95rem; font-weight:700; color:#111111; margin-bottom:4px; }
-    .video-card-body p { font-size:.82rem; color:var(--muted); }
-
-    /* TIMELINE — con línea conectora */
-    .timeline {
-      display:flex;
-      flex-direction:column;
-      gap:0;
-      margin-left: 25%;
-      margin-right: 20%;
-      position:relative;
-      padding-left:20px;
-    }
-    .timeline::before {
-      content:'';
-      position:absolute;
-      left:80px;
-      top:20px;
-      bottom:20px;
-      width:2px;
-      background:var(--borde);
-      z-index:0;
-    }
-    .timeline-item {
-      display:grid;
-      grid-template-columns:80px 1fr;
-      gap:0 20px;
-      background:var(--gris-card);
-      border:1px solid var(--borde);
-      border-radius:12px;
-      padding:18px 20px;
-      transition:border-color .2s,transform .15s,box-shadow .15s;
-      position:relative;
-      z-index:1;
-      margin-bottom:20px;
-    }
-    .timeline-item:last-child { margin-bottom:0; }
-    .timeline-item:hover {
-      border-color:var(--verde);
-      transform:translateY(-3px);
-      box-shadow:0 4px 20px rgba(0,112,243,.1);
-    }
-    /* punto en la línea */
-    .timeline-item::before {
-      content:'';
-      position:absolute;
-      left:-28px !important;
-      top:40px !important;
-      width:12px;
-      height:12px;
-      background:var(--verde);
-      border-radius:50%;
-      border:2px solid var(--gris-bg);
-      z-index:2;
-    }
-    .tl-fecha {
-      font-size:.78rem;
-      color:var(--muted);
-      padding-top:2px;
-      font-weight:600;
-      grid-column:1 / 2;
-    }
-    .tl-contenido {
-      grid-column:2 / 3;
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-    }
-    .tl-empresa {
-      font-weight:700;
-      font-size:.95rem;
-      color:#111111;
-    }
-    .tl-rol {
-      font-size:.82rem;
-      color:var(--verde);
-      margin-bottom:4px;
-    }
-    .tl-desc {
-      font-size:.82rem;
-      color:var(--muted);
-    }
-    .tl-linea { display:none; }
-
-    /* CHAT INLINE */
-    .chat-inline { padding:60px 40px; max-width:900px; margin:0 auto; border-top:1px solid var(--borde); }
-    .chat-inline-header { display:flex; align-items:center; gap:14px; margin-bottom:8px; }
-    .chat-inline-header h2 { font-size:1.4rem; font-weight:800; color:#111111; }
-    .chat-inline-sub { font-size:.88rem; color:var(--muted); margin-bottom:24px; }
-    .chat-inline-sub span { color:var(--verde); }
-
-    .sugerencias-grid { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
-    .sug-btn {
-      background:var(--gris-card); border:1px solid var(--borde);
-      color:var(--muted); font-size:.78rem; padding:7px 14px;
-      border-radius:20px; cursor:pointer; transition:border-color .2s,color .2s;
-    }
-    .sug-btn:hover { border-color:var(--verde); color:var(--verde); }
-
-    .chat-box {
-      background:var(--gris-card); border:1px solid var(--borde);
-      border-radius:12px; overflow:hidden;
-    }
-    .chat-mensajes {
-      height:340px; overflow-y:auto; padding:20px;
-      display:flex; flex-direction:column; gap:14px;
-      scroll-behavior:smooth;
-    }
-    .chat-mensajes::-webkit-scrollbar { width:4px; }
-    .chat-mensajes::-webkit-scrollbar-thumb { background:var(--borde); border-radius:4px; }
-
-    .msg { display:flex; gap:10px; align-items:flex-start; max-width:85%; }
-    .msg.usuario { align-self:flex-end; flex-direction:row-reverse; }
-    .msg.agente  { align-self:flex-start; }
-    .msg-avatar {
-      width:28px; height:28px; border-radius:50%;
-      background:#f0f0f0; border:1px solid rgba(0,112,243,.2);
-      display:flex; align-items:center; justify-content:center;
-      font-size:.8rem; flex-shrink:0;
-    }
-    .msg.usuario .msg-avatar { background:rgba(0,112,243,.1); border-color:rgba(0,112,243,.3); }
-    .msg-burbuja { padding:10px 14px; border-radius:10px; font-size:.85rem; line-height:1.55; }
-    .msg.agente  .msg-burbuja { background:#ffffff; color:var(--texto); border:1px solid var(--borde); }
-    .msg.usuario .msg-burbuja { background:rgba(0,112,243,.1); color:#0050b3; }
-
-    .chat-typing { display:none; align-self:flex-start; }
-    .chat-typing.visible { display:flex; }
-    .dot-bounce { display:flex; gap:4px; padding:10px 14px; }
-    .dot-bounce span { width:7px; height:7px; background:var(--verde); border-radius:50%; animation:bounce .9s infinite; }
-    .dot-bounce span:nth-child(2) { animation-delay:.15s; }
-    .dot-bounce span:nth-child(3) { animation-delay:.3s; }
-    @keyframes bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-7px)} }
-
-    .chat-input-row { display:flex; gap:0; border-top:1px solid var(--borde); }
-    .chat-input-row input {
-      flex:1; background:transparent; border:none; outline:none;
-      color:var(--texto); font-size:.88rem; padding:14px 18px;
-      font-family: var(--font-family);
-    }
-    .chat-input-row input::placeholder { color:var(--muted); }
-    .chat-send {
-      background:var(--verde); border:none; color:#ffffff;
-      font-weight:700; font-size:.85rem; padding:14px 22px;
-      cursor:pointer; transition:background .2s; white-space:nowrap;
-      font-family: var(--font-family);
-    }
-    .chat-send:hover { background:#0060df; }
-    .chat-send:disabled { background:#e5e5e5; color:var(--muted); cursor:not-allowed; }
-
-    /* TOAST */
-    .toast-btn {
-      position:fixed; bottom:24px; right:24px; z-index:200;
-      background:var(--verde); color:#ffffff; border:none;
-      width:52px; height:52px; border-radius:50%;
-      font-size:1.4rem; cursor:pointer; box-shadow:0 4px 20px rgba(0,112,243,.35);
-      transition:transform .2s,box-shadow .2s;
-      display:flex; align-items:center; justify-content:center;
-    }
-    .toast-btn:hover { transform:scale(1.1); box-shadow:0 6px 28px rgba(0,112,243,.5); }
-    .toast-badge {
-      position:absolute; top:-3px; right:-3px;
-      width:16px; height:16px; background:#ef4444; border-radius:50%;
-      font-size:.6rem; font-weight:700; color:#fff;
-      display:flex; align-items:center; justify-content:center;
-      border:2px solid #ffffff;
-    }
-
-    .toast-panel {
-      position:fixed; bottom:86px; right:24px; z-index:199;
-      width:340px; background:#ffffff;
-      border:1px solid var(--borde); border-radius:16px;
-      box-shadow:0 8px 32px rgba(0,0,0,.12);
-      display:none; flex-direction:column; overflow:hidden;
-      animation:slideUp .2s ease;
-    }
-    .toast-panel.abierto { display:flex; }
-    @keyframes slideUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-
-    .toast-header {
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 16px; border-bottom:1px solid var(--borde);
-      background:#f6f6f6;
-    }
-    .toast-header-left { display:flex; align-items:center; gap:10px; }
-    .toast-avatar { width:32px; height:32px; border-radius:50%; background:#eff6ff; border:1px solid rgba(0,112,243,.2); display:flex; align-items:center; justify-content:center; font-size:1rem; }
-    .toast-title { font-size:.88rem; font-weight:700; color:#111111; }
-    .toast-sub { font-size:.7rem; color:var(--verde); }
-    .toast-cerrar { background:none; border:none; color:var(--muted); font-size:1.1rem; cursor:pointer; padding:4px; transition:color .2s; }
-    .toast-cerrar:hover { color:#111111; }
-
-    .toast-mensajes {
-      height:260px; overflow-y:auto; padding:14px;
-      display:flex; flex-direction:column; gap:10px;
-      scroll-behavior:smooth;
-    }
-    .toast-mensajes::-webkit-scrollbar { width:3px; }
-    .toast-mensajes::-webkit-scrollbar-thumb { background:var(--borde); }
-
-    .toast-typing { display:none; align-self:flex-start; }
-    .toast-typing.visible { display:flex; }
-
-    .toast-input-row { display:flex; border-top:1px solid var(--borde); background:#ffffff; }
-    .toast-input-row input { 
-      flex:1; background:transparent; border:none; outline:none; 
-      color:var(--texto); font-size:.82rem; padding:12px 14px;
-      font-family: var(--font-family);
-    }
-    .toast-input-row input::placeholder { color:var(--muted); }
-    .toast-send { background:none; border:none; color:var(--verde); font-size:1.1rem; padding:12px 14px; cursor:pointer; transition:color .2s; }
-    .toast-send:hover { color:#0060df; }
-    .toast-send:disabled { color:var(--borde); cursor:not-allowed; }
-
-    /* CONTACTO */
-    .contacto { padding:80px 40px; max-width:900px; margin:0 auto; border-top:1px solid var(--borde); text-align:center; }
-    .contacto h2 { font-size:2rem; font-weight:800; color:#111111; margin-bottom:12px; }
-    .contacto > p { color:var(--muted); margin-bottom:32px; }
-    .contacto-links { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
-    .contacto-link { display:flex; align-items:center; gap:8px; background:var(--gris-card); border:1px solid var(--borde); color:var(--texto); text-decoration:none; padding:12px 20px; border-radius:8px; font-size:.88rem; transition:border-color .2s,color .2s; }
-    .contacto-link:hover { border-color:var(--verde); color:var(--verde); }
+    .video-wrapper video { width:100%; height:100%; object-fit:cover; display:block; background:#000; }
+    .video-card-body { padding:14px 16px 18px; }
+    .video-card-body h3 { font-size:.85rem; font-weight:700; color:#111111; margin-bottom:4px; }
+    .video-card-body p { font-size:.75rem; color:var(--muted); }
 
     footer { text-align:center; padding:24px; border-top:1px solid var(--borde); font-size:.78rem; color:var(--muted); }
 
+    /* MODAL DE CONTACTO */
+    .modal-overlay {
+      position:fixed; inset:0; background:rgba(0,0,0,.55);
+      display:none; align-items:center; justify-content:center;
+      z-index:300; padding:20px;
+    }
+    .modal-overlay.abierto { display:flex; }
+    .modal-box {
+      background:#ffffff; border:1px solid var(--borde); border-radius:16px;
+      padding:44px 36px; max-width:420px; width:100%; text-align:center;
+      position:relative; animation:modalIn .18s ease;
+    }
+    @keyframes modalIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+    .modal-cerrar {
+      position:absolute; top:14px; right:14px; background:none; border:none;
+      color:var(--muted); font-size:1.2rem; cursor:pointer; padding:6px;
+      line-height:1; transition:color .2s;
+    }
+    .modal-cerrar:hover { color:var(--verde); }
+    .modal-box h2 { font-size:1.7rem; font-weight:800; color:#111111; margin-bottom:10px; }
+    .modal-box > p { color:var(--muted); margin-bottom:28px; font-size:.92rem; }
+    .modal-links { display:flex; flex-direction:column; gap:10px; }
+    .modal-link {
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      background:var(--gris-card); border:1px solid var(--borde); color:var(--texto);
+      text-decoration:none; padding:12px 18px; border-radius:8px; font-size:.85rem;
+      transition:border-color .2s,color .2s;
+    }
+    .modal-link:hover { border-color:var(--verde); color:var(--verde); }
+
     /* RESPONSIVE */
+    @media(max-width:900px){
+      .grid-produccion { grid-template-columns:repeat(2,1fr); }
+    }
     @media(max-width:600px){
-      .hero,.seccion,.chat-inline,.contacto { padding-left:20px; padding-right:20px; }
+      .hero,.seccion { padding-left:20px; padding-right:20px; }
       .hero { padding-top:60px; }
-      .timeline {
-        margin-left:0;
-        margin-right:0;
-        padding-left:30px;
-      }
-      .timeline::before {
-        left:14px;
-      }
-      .timeline-item {
-        grid-template-columns:1fr;
-        gap:4px 0;
-        padding:14px 16px;
-        margin-bottom:14px;
-      }
-      .timeline-item::before {
-        left:-18px;
-        top:16px;
-        width:10px;
-        height:10px;
-      }
-      .tl-fecha {
-        grid-column:1;
-        text-align:left;
-        font-size:.7rem;
-        color:var(--verde);
-        font-weight:600;
-        padding-top:0;
-      }
-      .tl-contenido {
-        grid-column:1;
-      }
-      .toast-panel { width:calc(100vw - 32px); right:16px; bottom:80px; }
       .grid-produccion { grid-template-columns:1fr; }
     }
     @media(max-width:480px){
@@ -358,57 +126,8 @@
   <h1>Marco Acevedo Garrido<br><span id="rol-typewriter" class="rol-typewriter"></span><span class="rol-cursor">|</span></h1>
   <p>+8 años construyendo software en Python, Odoo y LangChain. Especializado en agentes de IA, automatizacion y ERP a medida.</p>
   <div class="hero-btns">
-    <a href="#proyectos" class="btn-primary">Ver proyectos</a>
-    <a href="mailto:MARCOACEVEDOGARRIDO@gmail.com" class="btn-secondary">Contactar</a>
-  </div>
-</section>
-
-<section class="seccion" id="proyectos">
-  <p class="seccion-titulo">Proyectos publicos en GitHub · <a href="https://github.com/marcoacevedogarridodev?tab=repositories" target="_blank" style="color:var(--verde);text-decoration:none;">ver todos →</a></p>
-  <div class="grid-proyectos">
-
-    <a class="card" href="https://github.com/marcoacevedogarridodev/Agente_IA_CasaCambios" target="_blank">
-      <div class="card-icon"></div>
-      <h3>Agente IA Casa de Cambios</h3>
-      <p>Agente conversacional, panel informativo de divisas y movimientos en tiempo real usando herramientas externas via LangChain. Software modulo ERP de monitoreo web, proceso de datos y visualizacion de informacion 24/7.</p>
-      <div class="card-tags"><span class="tag">LangChain</span><span class="tag">OpenAI</span><span class="tag">Python</span></div>
-    </a>
-
-    <a class="card" href="https://github.com/marcoacevedogarridodev/Scraper_Pj" target="_blank">
-      <div class="card-icon"></div>
-      <h3>Scraper</h3>
-      <p>Scraper basico desarrollado en TypeScript, su proceso es un scraping a sitio ministerial del Peru, entregando toda su informacion en formato pdf.</p>
-      <div class="card-tags"><span class="tag">TypeScript</span><span class="tag">Axios</span><span class="tag">Cheerio</span></div>
-    </a>
-
-    <a class="card" href="https://github.com/marcoacevedogarridodev/Tienda_plantas" target="_blank">
-      <div class="card-icon"></div>
-      <h3>Tienda de Plantas</h3>
-      <p>E-commerce completo de plantas con catalogo, Detalle de compras, carrito de compras, flujo completo de sitio ecommerce. Proyecto freelance para Feria de Emprendedores.</p>
-      <div class="card-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
-    </a>
-
-    <a class="card" href="https://github.com/marcoacevedogarridodev/Everwall_IA_mobile" target="_blank">
-      <div class="card-icon"></div>
-      <h3>Everwall Red Social - IA Mobile</h3>
-      <p>Aplicacion web y mobile con backend Python e integracion de IA para gestion y analisis de datos en tiempo real, Backend FastAPI probando su rapidez y procesamiento inteligente de informacion, grilla React Native para visualizacion de imagenes con alta calidad.</p>
-      <div class="card-tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">OpenAI</span></div>
-    </a>
-
-    <a class="card" href="https://github.com/marcoacevedogarridodev/Agente_IA_Reclutador" target="_blank">
-      <div class="card-icon"></div>
-      <h3>Agente IA Reclutador</h3>
-      <p>Agente LangGraph el cual automatiza el screening de candidatos. Analiza CV, evalua compatibilidad con el puesto, comparacion de habilidades entre candidatos y genera reportes con criterios definidos por el cliente.</p>
-      <div class="card-tags"><span class="tag">LangGraph</span><span class="tag">FastAPI</span><span class="tag">Python</span></div>
-    </a>
-
-    <a class="card" href="https://github.com/marcoacevedogarridodev/MModulo_Odoo_Aeropost" target="_blank">
-      <div class="card-icon"></div>
-      <h3>Modulo Odoo - Aeropost</h3>
-      <p>Agente IA integrado en Odoo 14 para el proceso de dropshipping con servicio de envios Aeropost. Automatiza compras, tracking de repuestos y seguimiento de pedidos en tiempo real, Dropshipping puro.</p>
-      <div class="card-tags"><span class="tag">Odoo 14</span><span class="tag">LangChain</span><span class="tag">Python</span></div>
-    </a>
-
+    <a href="https://github.com/marcoacevedogarridodev?tab=repositories" target="_blank" rel="noopener" class="btn-primary">Ver proyectos</a>
+    <button type="button" class="btn-secondary" id="btn-contactar">Contactar</button>
   </div>
 </section>
 
@@ -442,374 +161,85 @@
       </div>
     </div>
 
-  </div>
-</section>
-
-<section class="seccion" id="experiencia">
-  <p class="seccion-titulo">Experiencia</p>
-  <div class="timeline">
-
-    <div class="timeline-item">
-      <span class="tl-fecha">Freelance</span>
-      <div class="tl-contenido">
-        <div class="tl-empresa">Eleccom Ingenieria Electrica</div>
-        <div class="tl-rol">Desarrollador FullStack ERP Odoo 16+IA</div>
+    <div class="card video-card">
+      <div class="video-wrapper">
+        <video controls preload="metadata" poster="5.png">
+          <source src="3.mp4" type="video/mp4">
+          Tu navegador no soporta el elemento de video.
+        </video>
+      </div>
+      <div class="video-card-body">
+        <h3>Proyecto 3</h3>
+        <p>Reemplaza este video y descripcion</p>
       </div>
     </div>
 
-    <div class="timeline-item">
-      <span class="tl-fecha">Freelance</span>
-      <div class="tl-contenido">
-        <div class="tl-empresa">AutoproGarage - Aeropost</div>
-        <div class="tl-rol">Desarrollador ERP Odoo 14+IA</div>
+    <div class="card video-card">
+      <div class="video-wrapper">
+        <video controls preload="metadata" poster="6.png">
+          <source src="4.mp4" type="video/mp4">
+          Tu navegador no soporta el elemento de video.
+        </video>
+      </div>
+      <div class="video-card-body">
+        <h3>Proyecto 4</h3>
+        <p>Reemplaza este video y descripcion</p>
       </div>
     </div>
 
-    <div class="timeline-item">
-      <span class="tl-fecha">Ene-Jun 2025</span>
-      <div class="tl-contenido">
-        <div class="tl-empresa">Fabrica de Calzados Gino S.A.</div>
-        <div class="tl-rol">Desarrollador FullStack ERP Odoo 17</div>
+    <div class="card video-card">
+      <div class="video-wrapper">
+        <video controls preload="metadata" poster="7.png">
+          <source src="5.mp4" type="video/mp4">
+          Tu navegador no soporta el elemento de video.
+        </video>
+      </div>
+      <div class="video-card-body">
+        <h3>Proyecto 5</h3>
+        <p>Reemplaza este video y descripcion</p>
       </div>
     </div>
 
-    <div class="timeline-item">
-      <span class="tl-fecha">2021-2024</span>
-      <div class="tl-contenido">
-        <div class="tl-empresa">Atentus</div>
-        <div class="tl-rol">Desarrollador FullStack - OutSystems 11</div>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <span class="tl-fecha">2017-2020</span>
-      <div class="tl-contenido">
-        <div class="tl-empresa">Apiux</div>
-        <div class="tl-rol">Desarrollador backend Python</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section class="chat-inline" id="consulta-ia">
-  <p class="seccion-titulo">Consulta IA</p>
-  <p class="chat-inline-sub">
-    Pregunta cualquier cosa sobre mi experiencia, tecnologias o proyectos.<br>
-    <span>Powered by GPT-4o-mini - responde solo con informacion de mi CV real.</span>
-  </p>
-
-  <div class="chat-box">
-    <div class="chat-mensajes" id="chat-mensajes">
-      <div class="msg agente">
-        <div class="msg-avatar">🕵️</div>
-        <div class="msg-burbuja">
-          Hola, Soy el asistente creado por MarcoAG puedes preguntarme sobre su experiencia, tecnologias, proyectos o compatibilidades entre herramientas que usa. En que te puedo ayudar?
-        </div>
-      </div>
-      <div class="chat-typing msg agente" id="chat-typing">
-        <div class="msg-avatar">🕵️</div>
-        <div class="dot-bounce"><span></span><span></span><span></span></div>
-      </div>
-    </div>
-    <div class="chat-input-row">
-      <input id="chat-input" type="text" placeholder="Pregunta sobre mis tecnologias, proyectos o experiencia ..." />
-      <button class="chat-send" id="chat-send">Enviar</button>
-    </div>
-  </div>
-</section>
-
-<section class="contacto" id="contacto">
-  <h2>¿Hablamos?</h2>
-  <p>Disponibilidad inmediata · Santiago, Chile</p>
-  <div class="contacto-links">
-    <a class="contacto-link" href="mailto:MARCOACEVEDOGARRIDO@gmail.com">MARCOACEVEDOGARRIDO@gmail.com</a>
-    <a class="contacto-link" href="tel:+56 9 63034941">+56 9 63034941</a>
-    <a class="contacto-link" href="https://github.com/MARCOACEVEDOGARRIDODEV" target="_blank">github.com/MARCOACEVEDOGARRIDODEV</a>
   </div>
 </section>
 
 <footer>© 2026 Marco Antonio Acevedo Garrido - Desarrollador FullStack & IA</footer>
 
-<button class="toast-btn" id="toast-btn" title="Hablar con el asistente de Marco">
-  🕵️
-  <span class="toast-badge" id="toast-badge">1</span>
-</button>
-
-<div class="toast-panel" id="toast-panel">
-  <div class="toast-header">
-    <div class="toast-header-left">
-      <div>
-        <div class="toast-title">Asistente de Marco</div>
-        <div class="toast-sub">● En linea - responde sobre el CV</div>
-      </div>
+<!-- MODAL CONTACTO -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box">
+    <button class="modal-cerrar" id="modal-cerrar" aria-label="Cerrar">✕</button>
+    <h2>¿Hablamos?</h2>
+    <p>Disponibilidad inmediata · Santiago, Chile</p>
+    <div class="modal-links">
+      <a class="modal-link" href="mailto:MARCOACEVEDOGARRIDO@gmail.com">MARCOACEVEDOGARRIDO@gmail.com</a>
+      <a class="modal-link" href="tel:+56963034941">+56 9 63034941</a>
+      <a class="modal-link" href="https://github.com/MARCOACEVEDOGARRIDODEV" target="_blank" rel="noopener">github.com/MARCOACEVEDOGARRIDODEV</a>
     </div>
-    <button class="toast-cerrar" id="toast-cerrar">✕</button>
-  </div>
-  <div class="toast-mensajes" id="toast-mensajes">
-    <div class="msg agente">
-      <div class="msg-avatar" style="width:24px;height:24px;font-size:.7rem;">🕵️</div>
-      <div class="msg-burbuja" style="font-size:.8rem;">
-        Hola! Tienes dudas sobre experiencia o tecnologias? Preguntame lo que quieras.
-      </div>
-    </div>
-    <div class="chat-typing msg agente" id="toast-typing" style="display:none;">
-      <div class="msg-avatar" style="width:24px;height:24px;font-size:.7rem;">🕵️</div>
-      <div class="dot-bounce"><span></span><span></span><span></span></div>
-    </div>
-  </div>
-  <div class="toast-input-row">
-    <input id="toast-input" type="text" placeholder="Escribe tu pregunta ..." />
-    <button class="toast-send" id="toast-send">➤</button>
   </div>
 </div>
 
-
 <script>
-const CONTEXTO_CV = `
-Eres el asistente virtual de Marco Antonio Acevedo Garrido, desarrollador FullStack e IA con sede en Santiago, Chile.
-SOLO puedes responder con informacion de su CV y experiencia real. Si te preguntan algo fuera de su perfil, redirige amablemente.
-Respuestas cortas, directas y en español. Máximo 4 oraciones.
+// Modal de contacto
+const btnContactar = document.getElementById('btn-contactar');
+const modalOverlay = document.getElementById('modal-overlay');
+const modalCerrar = document.getElementById('modal-cerrar');
 
-=== DATOS DE CONTACTO ===
-Nombre: Marco Antonio Acevedo Garrido
-Email: MARCOACEVEDOGARRIDO@gmail.com
-Teléfono: +56 963034941
-Ciudad: Santiago, Quinta Normal
-Disponibilidad: Inmediata
-Nacimiento: 1985-10-04
-
-=== HABILIDADES PRINCIPALES ===
-- IA y Automatización: OpenAI API, LangChain, LangGraph, N8N, Streamlit, Azure AI Search, Azure Functions, Copilot Studio, Make
-- Backend: Python, Django, DRF, Flask, FastAPI, Celery
-- Frontend: React Native, Next.js, Tailwind, QWeb, OWL
-- ERP: Odoo 11, 12, 13, 14, 15, 16, 17. QWeb, OWL, XML-RPC, ReportLab
-- Cloud/DevOps: AWS EC2, Docker, DigitalOcean, Redis, PostgreSQL, MongoDB
-- Web Scraping y ETL: Selenium, BeautifulSoup4, Requests, Pandas, Apache Spark
-- Bases de datos: PostgreSQL, MongoDB, ChromaDB (vectorial)
-- Testing: pytest, unittest, CI/CD, GitHub Actions, GitLab CI
-- Control de versiones: Git, GitLab, Jira, Scrum
-
-=== EXPERIENCIA LABORAL ===
-FREELANCE - Eleccom Ingeniería Eléctrica (2025 - Actualidad). Desarrollador ERP Odoo 16.
-REEMPLAZO - Fábrica de Calzados Gino S.A. (Enero 2025 - Junio 2025). Desarrollador ERP Odoo 17.
-FREELANCE - AutoproGarage & Aeropost. Desarrollador ERP Odoo 14.
-EMPLEO - Atentus (Septiembre 2021 - Abril 2024). Desarrollador FullStack IA, Odoo 17 y OutSystems 11.
-EMPLEO - Indra Company (Febrero 2021 - Julio 2021). Desarrollador Odoo 14.
-EMPLEO - Apiux (Agosto 2017 - Noviembre 2020). Desarrollador FullStack.
-`;
-
-const chatMensajes = document.getElementById('chat-mensajes');
-const chatInput = document.getElementById('chat-input');
-const chatSend = document.getElementById('chat-send');
-const chatTyping = document.getElementById('chat-typing');
-
-let historialInline = [];
-let chatEnProgreso = false;
-
-function agregarMensaje(contenedor, texto, esUsuario, esCompacto = false) {
-    const tamAvatar = esCompacto ? 'style="width:24px;height:24px;font-size:.7rem;"' : '';
-    const tamBurbuja = esCompacto ? 'style="font-size:.8rem;"' : '';
-    const div = document.createElement('div');
-    div.className = `msg ${esUsuario ? 'usuario' : 'agente'}`;
-    div.innerHTML = `
-        <div class="msg-avatar" ${tamAvatar}>${esUsuario ? '👤' : '🕵️'}</div>
-        <div class="msg-burbuja" ${tamBurbuja}>${texto}</div>
-    `;
-    const typing = contenedor.querySelector('.chat-typing, #toast-typing');
-    contenedor.insertBefore(div, typing);
-    contenedor.scrollTop = contenedor.scrollHeight;
+function abrirModal() {
+  modalOverlay.classList.add('abierto');
+}
+function cerrarModal() {
+  modalOverlay.classList.remove('abierto');
 }
 
-function mostrarTyping(el, mostrar) {
-    if (!el) return;
-    el.style.display = mostrar ? 'flex' : 'none';
-    if (mostrar) {
-        const parent = el.closest('.chat-mensajes, .toast-mensajes');
-        if (parent) parent.scrollTop = 999999;
-    }
-}
-
-async function preguntarAlModelo(pregunta, historial) {
-    const mensajes = [
-        { role: "system", content: CONTEXTO_CV },
-        ...historial,
-        { role: "user", content: pregunta }
-    ];
-    const respuesta = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mensajes })
-    });
-    if (!respuesta.ok) {
-        const err = await respuesta.json().catch(() => ({}));
-        throw new Error(err.error || `Error ${respuesta.status}`);
-    }
-    const datos = await respuesta.json();
-    if (!datos.ok) throw new Error(datos.error || "Error desconocido");
-    return datos.respuesta;
-}
-
-async function enviarChatInline(pregunta) {
-    if (!pregunta.trim()) return;
-    if (chatEnProgreso) return;
-    
-    chatEnProgreso = true;
-    agregarMensaje(chatMensajes, pregunta, true);
-    chatInput.value = '';
-    chatSend.disabled = true;
-    mostrarTyping(chatTyping, true);
-    
-    try {
-        const r = await preguntarAlModelo(pregunta, historialInline);
-        historialInline.push({ role: "user", content: pregunta });
-        historialInline.push({ role: "assistant", content: r });
-        mostrarTyping(chatTyping, false);
-        agregarMensaje(chatMensajes, r, false);
-    } catch (e) {
-        mostrarTyping(chatTyping, false);
-        agregarMensaje(chatMensajes, 'x ' + e.message, false);
-    }
-    
-    chatSend.disabled = false;
-    chatEnProgreso = false;
-    chatInput.focus();
-}
-
-chatSend.addEventListener('click', function(e) {
-    e.preventDefault();
-    enviarChatInline(chatInput.value);
+btnContactar.addEventListener('click', abrirModal);
+modalCerrar.addEventListener('click', cerrarModal);
+modalOverlay.addEventListener('click', function (e) {
+  if (e.target === modalOverlay) cerrarModal();
 });
-
-chatInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-        e.preventDefault();
-        enviarChatInline(chatInput.value);
-    }
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') cerrarModal();
 });
-
-document.querySelectorAll('.sug-btn').forEach(function(boton) {
-    boton.addEventListener('click', function(e) {
-        e.preventDefault();
-        chatInput.value = this.dataset.q;
-        enviarChatInline(this.dataset.q);
-    });
-});
-
-const toastBtn = document.getElementById('toast-btn');
-const toastPanel = document.getElementById('toast-panel');
-const toastCerrar = document.getElementById('toast-cerrar');
-const toastBadge = document.getElementById('toast-badge');
-const toastMensajes = document.getElementById('toast-mensajes');
-const toastInput = document.getElementById('toast-input');
-const toastSend = document.getElementById('toast-send');
-const toastTyping = document.getElementById('toast-typing');
-
-let historialToast = [];
-let toastEnProgreso = false;
-
-toastBtn.addEventListener('click', function() {
-    toastPanel.classList.toggle('abierto');
-    if (toastPanel.classList.contains('abierto')) {
-        toastBadge.style.display = 'none';
-        toastInput.focus();
-    }
-});
-
-toastCerrar.addEventListener('click', function() {
-    toastPanel.classList.remove('abierto');
-});
-
-async function enviarToast(pregunta) {
-    if (!pregunta.trim()) return;
-    if (toastEnProgreso) return;
-    
-    toastEnProgreso = true;
-    agregarMensaje(toastMensajes, pregunta, true, true);
-    toastInput.value = '';
-    toastSend.disabled = true;
-    mostrarTyping(toastTyping, true);
-    
-    try {
-        const r = await preguntarAlModelo(pregunta, historialToast);
-        historialToast.push({ role: "user", content: pregunta });
-        historialToast.push({ role: "assistant", content: r });
-        mostrarTyping(toastTyping, false);
-        agregarMensaje(toastMensajes, r, false, true);
-    } catch (e) {
-        mostrarTyping(toastTyping, false);
-        agregarMensaje(toastMensajes, '❌ ' + e.message, false, true);
-    }
-    
-    toastSend.disabled = false;
-    toastEnProgreso = false;
-    toastInput.focus();
-}
-
-toastSend.addEventListener('click', function(e) {
-    e.preventDefault();
-    enviarToast(toastInput.value);
-});
-
-toastInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-        e.preventDefault();
-        enviarToast(toastInput.value);
-    }
-});
-
-const FETCH_TIMEOUT = 30000; // 30 segundos
-
-async function fetchWithTimeout(url, options, timeout = FETCH_TIMEOUT) {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), timeout);
-    
-    try {
-        const response = await fetch(url, {
-            ...options,
-            signal: controller.signal
-        });
-        clearTimeout(timeoutId);
-        return response;
-    } catch (error) {
-        clearTimeout(timeoutId);
-        if (error.name === 'AbortError') {
-            throw new Error('La petición tardó demasiado tiempo. Intenta de nuevo.');
-        }
-        throw error;
-    }
-}
-
-const preguntarAlModeloOriginal = preguntarAlModelo;
-
-preguntarAlModelo = async function(pregunta, historial) {
-    const mensajes = [
-        { role: "system", content: CONTEXTO_CV },
-        ...historial,
-        { role: "user", content: pregunta }
-    ];
-    
-    const respuesta = await fetchWithTimeout("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mensajes })
-    }, 60000); // 60 segundos para respuestas largas
-    
-    if (!respuesta.ok) {
-        const err = await respuesta.json().catch(() => ({}));
-        throw new Error(err.error || `Error ${respuesta.status}`);
-    }
-    const datos = await respuesta.json();
-    if (!datos.ok) throw new Error(datos.error || "Error desconocido");
-    return datos.respuesta;
-};
-
-if (window._chatTimers) {
-    window._chatTimers.forEach(timer => clearInterval(timer));
-    window._chatTimers = [];
-}
-
-console.log('Chat configurado: 1 petición a la vez, timeout de 60s');
 </script>
 
 <script>
@@ -829,7 +259,6 @@ console.log('Chat configurado: 1 petición a la vez, timeout de 60s');
 
   function escribir() {
     if (i >= textoFinal.length) {
-      // Terminó: esperar 10 segundos y reiniciar
       if (timeoutId) clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         reiniciar();
