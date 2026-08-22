@@ -28,7 +28,7 @@
     }
 
     /* HERO */
-    .hero { padding:60px 40px 50px; max-width:900px; margin:0 auto; }
+    .hero { padding:60px 40px 50px; max-width:900px; margin:0 auto; text-align:center; }
     .hero h1 { font-size:clamp(2.4rem,3vw,3.8rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; color:#111111; margin-bottom:20px; }
     .rol-cursor {
       display:inline-block;
@@ -38,32 +38,32 @@
       animation: rolParpadeo .85s steps(1) infinite;
     }
     @keyframes rolParpadeo { 0%,49%{opacity:1} 50%,100%{opacity:0} }
-    .hero > p { font-size:1.1rem; color:var(--muted); max-width:600px; margin-bottom:36px; }
-    .hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
+    .hero > p { font-size:1.1rem; color:var(--muted); max-width:600px; margin:0 auto 36px; }
+    .hero-btns { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
     .btn-primary {
-      background:var(--verde); color:#ffffff; font-weight:650; font-size:.9rem;
-      padding:11px 22px; border-radius:7px; text-decoration:none;
+      background:var(--verde); color:#ffffff; font-weight:600; font-size:.85rem;
+      padding:8px 18px; border-radius:6px; text-decoration:none;
       border:none; cursor:pointer; font-family:var(--font-family);
       transition:background .2s,transform .1s;
     }
     .btn-primary:hover { background:#0060df; transform:translateY(-1px); }
     .btn-secondary {
-      border:1px solid var(--borde); color:var(--texto); font-size:.9rem;
-      padding:11px 22px; border-radius:7px; text-decoration:none;
+      border:1px solid var(--borde); color:var(--texto); font-size:.85rem;
+      padding:8px 18px; border-radius:6px; text-decoration:none;
       background:transparent; cursor:pointer; font-family:var(--font-family);
       transition:border-color .2s,color .2s;
     }
     .btn-secondary:hover { border-color:var(--verde); color:var(--verde); }
 
     /* SECCIONES */
-    .seccion { padding:20px 40px; max-width:1100px; margin:0 auto; border-top:1px solid var(--borde); }
+    .seccion { padding:20px 40px; max-width:1100px; margin:0 auto; border-top:1px solid var(--borde); text-align:center; }
     .seccion-titulo { font-size:.75rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; }
 
     /* SECCION PRODUCCION: ancho amplio, solo 2cm de espacio a cada lado */
     #en-produccion { max-width:none; padding-left:2cm; padding-right:2cm; }
 
     /* GRID PRODUCCION (6 videos, una sola fila) */
-    .grid-produccion { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; }
+    .grid-produccion { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; text-align:left; }
     .video-card {
       background:var(--gris-card); border:1px solid var(--borde); border-radius:12px;
       padding:0; overflow:hidden; display:flex; flex-direction:column;
