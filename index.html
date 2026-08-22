@@ -20,6 +20,11 @@
       --font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
+    html, body {
+      height:100%;
+      overflow:hidden; /* el scroll vertical se traduce en movimiento horizontal */
+      overscroll-behavior:none;
+    }
     body {
       background:var(--gris-bg);
       color:var(--texto);
@@ -27,8 +32,29 @@
       line-height:1.6;
     }
 
+    /* VIEWPORT / TRACK: la "pista" horizontal que contiene las paginas duplicadas */
+    .viewport {
+      position:relative;
+      width:100vw;
+      height:100vh;
+      overflow:hidden;
+    }
+    .track {
+      display:flex;
+      height:100%;
+      will-change:transform;
+    }
+    .pagina {
+      width:100vw;
+      height:100%;
+      flex-shrink:0;
+      overflow:hidden; /* hero + galeria se mueven juntos, sin scroll vertical propio */
+      display:flex;
+      flex-direction:column;
+    }
+
     /* HERO */
-    .hero { padding:40px 40px 50px; max-width:900px; margin:0 auto; text-align:center; }
+    .hero { padding:40px 40px 30px; max-width:900px; margin:0 auto; text-align:center; flex-shrink:0; }
     .hero h1 { font-size:clamp(2.4rem,3vw,3.8rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; color:#111111; margin-bottom:20px; }
     .rol-cursor {
       display:inline-block;
@@ -56,11 +82,11 @@
     .btn-secondary:hover { border-color:var(--verde); color:var(--verde); }
 
     /* SECCIONES */
-    .seccion { padding:20px 40px; max-width:1100px; margin:0 auto; border-top:1px solid var(--borde); text-align:center; }
+    .seccion { padding:20px 40px; max-width:1100px; margin:0 auto; border-top:1px solid var(--borde); text-align:center; flex:1; min-height:0; }
     .seccion-titulo { font-size:.75rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; }
 
     /* SECCION PRODUCCION: ancho amplio, solo 2cm de espacio a cada lado */
-    #en-produccion { max-width:none; padding-left:2cm; padding-right:2cm; }
+    .en-produccion { max-width:none; padding-left:2cm; padding-right:2cm; }
 
     /* GRID PRODUCCION (6 videos, una sola fila) */
     .grid-produccion { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; text-align:left; }
@@ -159,8 +185,8 @@
     }
     @media(max-width:600px){
       .hero,.seccion { padding-left:20px; padding-right:20px; }
-      .hero { padding-top:60px; }
-      #en-produccion { padding-left:20px; padding-right:20px; }
+      .hero { padding-top:40px; padding-bottom:20px; }
+      .en-produccion { padding-left:20px; padding-right:20px; }
       .grid-produccion { grid-template-columns:1fr; }
     }
     @media(max-width:480px){
@@ -171,95 +197,106 @@
 </head>
 <body>
 
-<section class="hero">
-  <h1>Marco AG.<br><span id="rol-typewriter" class="rol-typewriter"></span><span class="rol-cursor">|</span></h1>
-  <p>Especializado en agentes de IA, arquitecturas RAG y ERPs a medida, enfocado en escalar automatizaciones complejas.</p>
-  <div class="hero-btns">
-    <a href="https://github.com/marcoacevedogarridodev?tab=repositories" target="_blank" rel="noopener" class="btn-primary">Ver proyectos</a>
-    <button type="button" class="btn-secondary" id="btn-contactar">Contactar</button>
+<div class="viewport">
+  <div class="track" id="track">
+
+    <div class="pagina">
+
+      <section class="hero">
+        <h1>Marco AG.<br><span class="rol-typewriter"></span><span class="rol-cursor">|</span></h1>
+        <p>Especializado en agentes de IA, arquitecturas RAG y ERPs a medida, enfocado en escalar automatizaciones complejas.</p>
+        <div class="hero-btns">
+          <a href="https://github.com/marcoacevedogarridodev?tab=repositories" target="_blank" rel="noopener" class="btn-primary">Ver proyectos</a>
+          <button type="button" class="btn-secondary btn-contactar">Contactar</button>
+        </div>
+      </section>
+
+      <section class="seccion en-produccion">
+        <p class="seccion-titulo">En produccion</p>
+        <div class="grid-produccion">
+
+          <div class="card video-card" data-video-src="1.mp4" data-video-poster="3.png" data-video-titulo="Scraper+IA">
+            <div class="video-wrapper">
+              <video preload="metadata" poster="3.png" muted playsinline>
+                <source src="1.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+              </video>
+            </div>
+            <div class="video-card-body">
+              <h3>Scraper+IA</h3>
+            </div>
+          </div>
+
+          <div class="card video-card" data-video-src="2.mp4" data-video-poster="4.png" data-video-titulo="Proceso Reclutador+IA">
+            <div class="video-wrapper">
+              <video preload="metadata" poster="4.png" muted playsinline>
+                <source src="2.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+              </video>
+            </div>
+            <div class="video-card-body">
+              <h3>Proceso Reclutador+IA</h3>
+            </div>
+          </div>
+
+          <div class="card video-card" data-video-src="3.mp4" data-video-poster="5.png" data-video-titulo="Proyecto 3">
+            <div class="video-wrapper">
+              <video preload="metadata" poster="5.png" muted playsinline>
+                <source src="3.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+              </video>
+            </div>
+            <div class="video-card-body">
+              <h3>Proyecto 3</h3>
+            </div>
+          </div>
+
+          <div class="card video-card" data-video-src="4.mp4" data-video-poster="6.png" data-video-titulo="Proyecto 4">
+            <div class="video-wrapper">
+              <video preload="metadata" poster="6.png" muted playsinline>
+                <source src="4.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+              </video>
+            </div>
+            <div class="video-card-body">
+              <h3>Proyecto 4</h3>
+            </div>
+          </div>
+
+          <div class="card video-card" data-video-src="5.mp4" data-video-poster="7.png" data-video-titulo="Proyecto 5">
+            <div class="video-wrapper">
+              <video preload="metadata" poster="7.png" muted playsinline>
+                <source src="5.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+              </video>
+            </div>
+            <div class="video-card-body">
+              <h3>Proyecto 5</h3>
+            </div>
+          </div>
+
+          <div class="card video-card" data-video-src="6.mp4" data-video-poster="8.png" data-video-titulo="Proyecto 6">
+            <div class="video-wrapper">
+              <video preload="metadata" poster="8.png" muted playsinline>
+                <source src="6.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+              </video>
+            </div>
+            <div class="video-card-body">
+              <h3>Proyecto 6</h3>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+    <!-- La segunda copia de .pagina se inserta por JS para el loop infinito -->
+
   </div>
-</section>
+</div>
 
-<section class="seccion" id="en-produccion">
-  <p class="seccion-titulo">En produccion</p>
-  <div class="grid-produccion">
-
-    <div class="card video-card" data-video-src="1.mp4" data-video-poster="3.png" data-video-titulo="Scraper+IA">
-      <div class="video-wrapper">
-        <video preload="metadata" poster="3.png" muted playsinline>
-          <source src="1.mp4" type="video/mp4">
-          Tu navegador no soporta el elemento de video.
-        </video>
-      </div>
-      <div class="video-card-body">
-        <h3>Scraper+IA</h3>
-      </div>
-    </div>
-
-    <div class="card video-card" data-video-src="2.mp4" data-video-poster="4.png" data-video-titulo="Proceso Reclutador+IA">
-      <div class="video-wrapper">
-        <video preload="metadata" poster="4.png" muted playsinline>
-          <source src="2.mp4" type="video/mp4">
-          Tu navegador no soporta el elemento de video.
-        </video>
-      </div>
-      <div class="video-card-body">
-        <h3>Proceso Reclutador+IA</h3>
-      </div>
-    </div>
-
-    <div class="card video-card" data-video-src="3.mp4" data-video-poster="5.png" data-video-titulo="Proyecto 3">
-      <div class="video-wrapper">
-        <video preload="metadata" poster="5.png" muted playsinline>
-          <source src="3.mp4" type="video/mp4">
-          Tu navegador no soporta el elemento de video.
-        </video>
-      </div>
-      <div class="video-card-body">
-        <h3>Proyecto 3</h3>
-      </div>
-    </div>
-
-    <div class="card video-card" data-video-src="4.mp4" data-video-poster="6.png" data-video-titulo="Proyecto 4">
-      <div class="video-wrapper">
-        <video preload="metadata" poster="6.png" muted playsinline>
-          <source src="4.mp4" type="video/mp4">
-          Tu navegador no soporta el elemento de video.
-        </video>
-      </div>
-      <div class="video-card-body">
-        <h3>Proyecto 4</h3>
-      </div>
-    </div>
-
-    <div class="card video-card" data-video-src="5.mp4" data-video-poster="7.png" data-video-titulo="Proyecto 5">
-      <div class="video-wrapper">
-        <video preload="metadata" poster="7.png" muted playsinline>
-          <source src="5.mp4" type="video/mp4">
-          Tu navegador no soporta el elemento de video.
-        </video>
-      </div>
-      <div class="video-card-body">
-        <h3>Proyecto 5</h3>
-      </div>
-    </div>
-
-    <div class="card video-card" data-video-src="6.mp4" data-video-poster="8.png" data-video-titulo="Proyecto 6">
-      <div class="video-wrapper">
-        <video preload="metadata" poster="8.png" muted playsinline>
-          <source src="6.mp4" type="video/mp4">
-          Tu navegador no soporta el elemento de video.
-        </video>
-      </div>
-      <div class="video-card-body">
-        <h3>Proyecto 6</h3>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- MODAL CONTACTO -->
+<!-- MODAL CONTACTO (fuera de la pista, no se duplica) -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-box">
     <button class="modal-cerrar" id="modal-cerrar" aria-label="Cerrar">✕</button>
@@ -273,7 +310,7 @@
   </div>
 </div>
 
-<!-- MODAL VIDEO -->
+<!-- MODAL VIDEO (fuera de la pista, no se duplica) -->
 <div class="modal-overlay" id="video-modal-overlay">
   <div class="modal-video-box">
     <span class="modal-video-titulo" id="video-modal-titulo"></span>
@@ -283,8 +320,7 @@
 </div>
 
 <script>
-// Modal de contacto
-const btnContactar = document.getElementById('btn-contactar');
+// Modal de contacto (delegado, funciona con ambas copias del boton "Contactar")
 const modalOverlay = document.getElementById('modal-overlay');
 const modalCerrar = document.getElementById('modal-cerrar');
 
@@ -295,7 +331,9 @@ function cerrarModal() {
   modalOverlay.classList.remove('abierto');
 }
 
-btnContactar.addEventListener('click', abrirModal);
+document.addEventListener('click', function (e) {
+  if (e.target.closest('.btn-contactar')) abrirModal();
+});
 modalCerrar.addEventListener('click', cerrarModal);
 modalOverlay.addEventListener('click', function (e) {
   if (e.target === modalOverlay) cerrarModal();
@@ -306,12 +344,11 @@ document.addEventListener('keydown', function (e) {
 </script>
 
 <script>
-// Modal de video: click en cualquier tarjeta abre el video en un popup, como el modal de contacto
+// Modal de video: click en cualquier tarjeta (de cualquiera de las 2 paginas) abre el video en un popup
 const videoModalOverlay = document.getElementById('video-modal-overlay');
 const videoModalCerrar = document.getElementById('video-modal-cerrar');
 const videoModalPlayer = document.getElementById('video-modal-player');
 const videoModalTitulo = document.getElementById('video-modal-titulo');
-const tarjetasVideo = document.querySelectorAll('.video-card');
 
 function abrirVideoModal(src, poster, titulo) {
   videoModalPlayer.setAttribute('poster', poster || '');
@@ -328,14 +365,14 @@ function cerrarVideoModal() {
   videoModalPlayer.load();
 }
 
-tarjetasVideo.forEach(function (tarjeta) {
-  tarjeta.addEventListener('click', function () {
-    abrirVideoModal(
-      tarjeta.dataset.videoSrc,
-      tarjeta.dataset.videoPoster,
-      tarjeta.dataset.videoTitulo
-    );
-  });
+document.addEventListener('click', function (e) {
+  const tarjeta = e.target.closest('.video-card');
+  if (!tarjeta) return;
+  abrirVideoModal(
+    tarjeta.dataset.videoSrc,
+    tarjeta.dataset.videoPoster,
+    tarjeta.dataset.videoTitulo
+  );
 });
 
 videoModalCerrar.addEventListener('click', cerrarVideoModal);
@@ -348,68 +385,125 @@ document.addEventListener('keydown', function (e) {
 </script>
 
 <script>
+// Efecto maquina de escribir para el rol (se aplica a todas las copias, incluida la clonada)
 (function () {
-  const el = document.getElementById('rol-typewriter');
-  if (!el) return;
-
   const textoFinal = "Desarrollador FullStack & IA";
   const letrasError = 'abcdefghijk';
-  let i = 0;
-  let timeoutId = null;
-  let enEjecucion = false;
 
   function letraAleatoria() {
     return letrasError[Math.floor(Math.random() * letrasError.length)];
   }
 
-  function escribir() {
-    if (i >= textoFinal.length) {
+  function iniciarEnElemento(el) {
+    let i = 0;
+    let timeoutId = null;
+
+    function escribir() {
+      if (i >= textoFinal.length) {
+        if (timeoutId) clearTimeout(timeoutId);
+        timeoutId = setTimeout(reiniciar, 10000);
+        return;
+      }
+
+      const probabilidadError = i < textoFinal.length - 2 ? 0.1 : 0;
+      const seEquivoca = Math.random() < probabilidadError;
+
+      if (seEquivoca) {
+        el.textContent += letraAleatoria();
+        const pausaNotar = 180 + Math.random() * 220;
+        timeoutId = setTimeout(() => {
+          el.textContent = el.textContent.slice(0, -1);
+          const pausaCorregir = 90 + Math.random() * 120;
+          timeoutId = setTimeout(escribir, pausaCorregir);
+        }, pausaNotar);
+      } else {
+        el.textContent += textoFinal[i];
+        i++;
+        const caracterActual = textoFinal[i - 1];
+        const pausaExtra = /[ &.,]/.test(caracterActual) ? 90 : 0;
+        const velocidad = 50 + Math.random() * 90 + pausaExtra;
+        timeoutId = setTimeout(escribir, velocidad);
+      }
+    }
+
+    function reiniciar() {
       if (timeoutId) clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        reiniciar();
-      }, 10000);
-      return;
+      el.textContent = '';
+      i = 0;
+      timeoutId = setTimeout(escribir, 450);
     }
 
-    const probabilidadError = i < textoFinal.length - 2 ? 0.1 : 0;
-    const seEquivoca = Math.random() < probabilidadError;
-
-    if (seEquivoca) {
-      el.textContent += letraAleatoria();
-      const pausaNotar = 180 + Math.random() * 220;
-      timeoutId = setTimeout(() => {
-        el.textContent = el.textContent.slice(0, -1);
-        const pausaCorregir = 90 + Math.random() * 120;
-        timeoutId = setTimeout(escribir, pausaCorregir);
-      }, pausaNotar);
-    } else {
-      el.textContent += textoFinal[i];
-      i++;
-      const caracterActual = textoFinal[i - 1];
-      const pausaExtra = /[ &.,]/.test(caracterActual) ? 90 : 0;
-      const velocidad = 50 + Math.random() * 90 + pausaExtra;
-      timeoutId = setTimeout(escribir, velocidad);
-    }
-  }
-
-  function reiniciar() {
-    if (timeoutId) clearTimeout(timeoutId);
-    el.textContent = '';
-    i = 0;
-    timeoutId = setTimeout(escribir, 450);
-  }
-
-  function iniciar() {
-    if (enEjecucion) return;
-    enEjecucion = true;
     reiniciar();
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', iniciar);
-  } else {
-    iniciar();
+  function iniciarTodos() {
+    document.querySelectorAll('.rol-typewriter').forEach(iniciarEnElemento);
   }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', iniciarTodos);
+  } else {
+    iniciarTodos();
+  }
+})();
+</script>
+
+<script>
+// Scroll horizontal con loop infinito: la pagina completa (hero + galeria) se mueve como un solo bloque.
+// Se duplica la pagina una vez; al llegar al final reaparece la copia identica desde el otro lado.
+(function () {
+  const track = document.getElementById('track');
+  const primeraPagina = track.querySelector('.pagina');
+
+  // Duplicamos la pagina completa para el efecto de loop infinito
+  const clon = primeraPagina.cloneNode(true);
+  track.appendChild(clon);
+
+  let anchoPagina = window.innerWidth;
+  let actual = 0;
+  let objetivo = 0;
+
+  window.addEventListener('resize', function () {
+    anchoPagina = window.innerWidth;
+  });
+
+  function envolver() {
+    // Mantiene el valor dentro de [0, anchoPagina) para el loop infinito sin cortes
+    while (objetivo >= anchoPagina) { objetivo -= anchoPagina; actual -= anchoPagina; }
+    while (objetivo < 0) { objetivo += anchoPagina; actual += anchoPagina; }
+  }
+
+  function alScroll(e) {
+    // Si el objetivo del wheel es un elemento con scroll interno propio, dejarlo pasar
+    e.preventDefault();
+    objetivo += e.deltaY;
+    envolver();
+  }
+  window.addEventListener('wheel', alScroll, { passive: false });
+
+  // Soporte tactil (celular): swipe vertical mueve el contenido horizontalmente
+  let touchY = null;
+  window.addEventListener('touchstart', function (e) {
+    touchY = e.touches[0].clientY;
+  }, { passive: true });
+  window.addEventListener('touchmove', function (e) {
+    if (touchY === null) return;
+    const y = e.touches[0].clientY;
+    const delta = touchY - y;
+    touchY = y;
+    objetivo += delta;
+    envolver();
+    e.preventDefault();
+  }, { passive: false });
+  window.addEventListener('touchend', function () { touchY = null; });
+
+  function animar() {
+    actual += (objetivo - actual) * 0.12;
+    if (Math.abs(objetivo - actual) < 0.05) actual = objetivo;
+    track.style.transform = 'translateX(' + (-actual) + 'px)';
+    requestAnimationFrame(animar);
+  }
+  animar();
 })();
 </script>
 
