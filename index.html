@@ -184,14 +184,30 @@
       .grid-produccion { grid-template-columns:repeat(2,1fr); }
     }
     @media(max-width:600px){
+      .pagina { justify-content:center; }
       .hero,.seccion { padding-left:20px; padding-right:20px; }
-      .hero { padding-top:40px; padding-bottom:20px; }
-      .en-produccion { padding-left:20px; padding-right:20px; }
-      .grid-produccion { grid-template-columns:1fr; }
+      .hero { padding-top:0; padding-bottom:24px; flex-shrink:1; }
+      .hero > p { font-size:.95rem; margin-bottom:28px; }
+      .en-produccion { padding-left:20px; padding-right:20px; flex:none; }
+      .seccion-titulo { margin-bottom:14px; }
+
+      /* En mobile solo se muestra un video destacado: EverWall IA */
+      .grid-produccion { grid-template-columns:1fr; gap:0; }
+      .video-card { display:none; }
+      .video-card.destacado-mobile {
+        display:flex;
+        max-width:340px;
+        width:100%;
+        margin:0 auto;
+      }
     }
     @media(max-width:480px){
-      .hero h1 { font-size:1.8rem; }
+      .hero h1 { font-size:1.7rem; margin-bottom:14px; }
+      .hero-btns { gap:10px; }
       .hero-btns .btn-primary, .hero-btns .btn-secondary { width:100%; text-align:center; }
+      .video-card.destacado-mobile { max-width:300px; }
+      .video-card-body h3 { font-size:.8rem; }
+      .video-card-body p { font-size:.72rem; }
     }
   </style>
 </head>
@@ -239,7 +255,7 @@
             </div>
           </div>
 
-          <div class="card video-card" data-video-src="3.mp4" data-video-poster="5.png" data-video-titulo="Proyecto 3">
+          <div class="card video-card destacado-mobile" data-video-src="3.mp4" data-video-poster="5.png" data-video-titulo="Proyecto 3">
             <div class="video-wrapper">
               <video preload="metadata" poster="5.png" muted playsinline>
                 <source src="3.mp4" type="video/mp4">
@@ -307,7 +323,7 @@
     <p>Quinta Normal, Santiago, Chile</p>
     <div class="modal-links">
       <a class="modal-link" href="mailto:MARCOACEVEDOGARRIDO@gmail.com">MARCOACEVEDOGARRIDO@gmail.com</a>
-      <a class="modal-link" href="tel:+56963034941">+56 9 63034941</a>
+      <a class="modal-link" href="tel:+56923718294">+56 9 23718294</a>
       <a class="modal-link" href="https://github.com/MARCOACEVEDOGARRIDODEV" target="_blank" rel="noopener">github.com/MARCOACEVEDOGARRIDODEV</a>
     </div>
   </div>
