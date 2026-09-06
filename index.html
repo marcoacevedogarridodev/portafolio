@@ -1,93 +1,3 @@
-
-/
-Claude ha terminado la respuesta
-esta perfecto pero el mobile se ve mal ... calzar los elementos a mobile y que se vea solo un video, el tercero Everwall Ia
-
-Ejecutó un comando
-Voy a crear el archivo con el HTML actual y aplicar los ajustes de mobile: ocultar todas las tarjetas de video excepto EverWall IA, y centrar/ajustar el layout en pantallas chicas.
-
-2 archivos editados, ejecutó 2 comandos y 2 herramientas más
-Listo, quedó así el ajuste mobile:
-
-En pantallas ≤600px, la grilla de "En producción" ahora oculta las 6 tarjetas y muestra solo EverWall App+IA (la tercera), centrada y con ancho máximo (340px, 300px en pantallas muy chicas).
-El hero y la sección se centran verticalmente dentro del bloque de 100vh, con menos padding y texto un poco más chico para que todo calce sin cortarse.
-Los botones "Ver proyectos" / "Contactar" quedan a ancho completo apilados, como ya tenías.
-El resto (desktop/tablet con 6 y 3 columnas, el modal de video, el scroll horizontal infinito) sigue igual. Si quieres que en mobile se muestre otro video destacado en vez de EverWall, solo hay que mover la clase destacado-mobile a otra tarjeta.
-
-
-Index
-Código·HTML 
-lo veo en el visor del navegador y se ve mal ... peor en tu visor se ve bien
-
-Pensó durante 6s
-¿Puedes mandarme una captura de pantalla de cómo se ve en tu navegador (en mobile)? Así veo exactamente qué está mal — layout roto, elementos superpuestos, tamaños raros, etc.
-
-Mientras tanto, un par de cosas que podrían estar pasando:
-
-¿Estás probando en un navegador de escritorio con el modo "vista móvil" (DevTools)? A veces ese modo no dispara bien el evento resize que uso para recalcular el ancho de la página (anchoPagina = window.innerWidth), lo que puede desincronizar el scroll horizontal infinito y hacer que se vea "cortado" o desplazado.
-¿Los videos (3.mp4, 5.png, etc.) existen en la carpeta donde estás probando? Si no están, vas a ver recuadros negros o rotos en vez del video/poster, lo cual puede dar la sensación de que el diseño está mal aunque el CSS esté bien.
-¿Estás abriendo el archivo directo (file://) o con un servidor local? Con file:// a veces las fuentes de Google o rutas relativas fallan silenciosamente.
-Si me pasas la captura (o me dices si es algo como "el video queda cortado", "el texto se sale", "el botón queda mal posicionado", etc.) lo arreglo directo.
-
-perdon mil disculpas ahi lo arregle se ve bien !
-
-¡No hay problema! Me alegra que ya quedó bien. 🙌
-
-Cualquier otro ajuste que quieras hacerle al portafolio, aquí estoy.
-
-CV_Marco_Acevedo_ES.pdf
-pdf
-
-quiero un ultimo cambio ... en los botones Ver Proyecto y Contactar quiero que haya otro boton para descargar mi cv 
-
-adjunto cv para saber como poder hacer eso y donde alojar mi cv
-
-Ejecutó un comando
-Ahora agrego el botón "Descargar CV" en el hero, junto a "Ver proyectos" y "Contactar":
-
-Archivo editado, ejecutó un comando, leyó un archivo
-Listo, agregué el tercer botón. Cómo quedó:
-
-En el HTML:
-
-html
-<a href="CV_Marco_Acevedo.pdf" download class="btn-secondary">Descargar CV</a>
-El atributo download hace que el navegador descargue el archivo directo en vez de abrirlo en una pestaña nueva.
-
-Dónde alojarlo:
-No necesitas un servicio aparte. Como tu sitio ya vive en tu repo de GitHub (marcoacevedogarridodev) y sirve archivos por ruta relativa (igual que 1.mp4, 3.png, etc.), solo tienes que:
-
-Subir el archivo CV_Marco_Acevedo.pdf (te lo dejé listo arriba) a la misma carpeta raíz donde está tu index.html.
-Hacer commit/push como haces normalmente con los demás assets.
-Listo — el link href="CV_Marco_Acevedo.pdf" lo va a encontrar automáticamente porque queda al mismo nivel que el HTML.
-Si prefieres organizarlo en una subcarpeta (ej. /assets/CV_Marco_Acevedo.pdf), solo avísame y ajusto el href a esa ruta.
-
-En mobile, el botón se apila igual que "Contactar" (ambos son btn-secondary), así que no rompe nada del ajuste que ya hicimos.
-
-
-Index
-Código·HTML 
-
-Cv marco acevedo
-Documento·PDF 
-
-<!DOCTYPE html> <html lang="es"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>Marco Acevedo - Desarrollador FullStack & IA</title> <!-- Fuente Space Grotesk --> <link rel="preconnect" href="https://fonts.googleapis.c
-
-pasted
-
-dame este index sin ningun comentario, sini ningun mensaje ... dejalo plano como si lo hubiera hecho yo sin nada de cosas extras de IA
-
-Archivo creado, ejecutó un comando, leyó un archivo
-Cleaning up the code by removing all comments.
-
-¿Quieres recibir una notificación cuando Claude responda?
-Escribe un mensaje…
-
-
-Claude es una IA y puede cometer errores. Comprueba las respuestas.
-
-
-Index clean · HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -120,7 +30,7 @@ Index clean · HTML
       font-family: var(--font-family);
       line-height:1.6;
     }
- 
+
     .viewport {
       position:relative;
       width:100vw;
@@ -140,7 +50,7 @@ Index clean · HTML
       display:flex;
       flex-direction:column;
     }
- 
+
     .hero { padding:40px 40px 30px; max-width:900px; margin:0 auto; text-align:center; flex-shrink:0; }
     .hero h1 { font-size:clamp(2.4rem,3vw,3.8rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; color:#111111; margin-bottom:20px; }
     .rol-cursor {
@@ -167,12 +77,12 @@ Index clean · HTML
       transition:border-color .2s,color .2s;
     }
     .btn-secondary:hover { border-color:var(--verde); color:var(--verde); }
- 
+
     .seccion { padding:20px 40px; max-width:1100px; margin:0 auto; border-top:1px solid var(--borde); text-align:center; flex:1; min-height:0; }
     .seccion-titulo { font-size:.75rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; }
- 
+
     .en-produccion { max-width:none; padding-left:2cm; padding-right:2cm; }
- 
+
     .grid-produccion { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; text-align:left; }
     .video-card {
       background:var(--gris-card); border:1px solid var(--borde); border-radius:12px;
@@ -205,9 +115,9 @@ Index clean · HTML
     .video-card-body { padding:14px 16px 18px; }
     .video-card-body h3 { font-size:.85rem; font-weight:700; color:#111111; margin-bottom:4px; }
     .video-card-body p { font-size:.75rem; color:var(--muted); }
- 
+
     footer { text-align:center; padding:24px; border-top:1px solid var(--borde); font-size:.78rem; color:var(--muted); }
- 
+
     .modal-overlay {
       position:fixed; inset:0; background:rgba(0,0,0,.55);
       display:none; align-items:center; justify-content:center;
@@ -236,7 +146,7 @@ Index clean · HTML
       transition:border-color .2s,color .2s;
     }
     .modal-link:hover { border-color:var(--verde); color:var(--verde); }
- 
+
     .modal-video-box {
       background:#000; border:1px solid var(--borde); border-radius:16px;
       padding:0; max-width:900px; width:100%;
@@ -257,7 +167,7 @@ Index clean · HTML
       color:#fff; z-index:3;
     }
     .modal-video-box .modal-cerrar:hover { color:var(--verde); }
- 
+
     @media(max-width:1100px){
       .grid-produccion { grid-template-columns:repeat(3,1fr); }
     }
@@ -271,7 +181,7 @@ Index clean · HTML
       .hero > p { font-size:.95rem; margin-bottom:28px; }
       .en-produccion { padding-left:20px; padding-right:20px; flex:none; }
       .seccion-titulo { margin-bottom:14px; }
- 
+
       .grid-produccion { grid-template-columns:1fr; gap:0; }
       .video-card { display:none; }
       .video-card.destacado-mobile {
@@ -292,12 +202,12 @@ Index clean · HTML
   </style>
 </head>
 <body>
- 
+
 <div class="viewport">
   <div class="track" id="track">
- 
+
     <div class="pagina">
- 
+
       <section class="hero">
         <h1>Marco AG.<br><span class="rol-typewriter"></span><span class="rol-cursor">|</span></h1>
         <p>Especializado en agentes de IA, arquitecturas RAG y ERPs a medida, enfocado en escalar automatizaciones complejas.</p>
@@ -307,11 +217,11 @@ Index clean · HTML
           <a href="CV_Marco_Acevedo.pdf" download class="btn-primary">Descargar CV</a>
         </div>
       </section>
- 
+
       <section class="seccion en-produccion">
         <p class="seccion-titulo">En produccion</p>
         <div class="grid-produccion">
- 
+
           <div class="card video-card" data-video-src="1.mp4" data-video-poster="3.png" data-video-titulo="Scraper+IA">
             <div class="video-wrapper">
               <video preload="metadata" poster="3.png" muted playsinline>
@@ -323,7 +233,7 @@ Index clean · HTML
               <h3>Scraper+IA</h3>
             </div>
           </div>
- 
+
           <div class="card video-card" data-video-src="2.mp4" data-video-poster="4.png" data-video-titulo="Proceso Reclutador+IA">
             <div class="video-wrapper">
               <video preload="metadata" poster="4.png" muted playsinline>
@@ -335,7 +245,7 @@ Index clean · HTML
               <h3>Proceso Reclutador+IA</h3>
             </div>
           </div>
- 
+
           <div class="card video-card destacado-mobile" data-video-src="3.mp4" data-video-poster="5.png" data-video-titulo="Proyecto 3">
             <div class="video-wrapper">
               <video preload="metadata" poster="5.png" muted playsinline>
@@ -348,7 +258,7 @@ Index clean · HTML
               <p>TypeScript, Python, OpenAI API, AWS, S3</p>
             </div>
           </div>
- 
+
           <div class="card video-card" data-video-src="4.mp4" data-video-poster="6.png" data-video-titulo="Proyecto 4">
             <div class="video-wrapper">
               <video preload="metadata" poster="6.png" muted playsinline>
@@ -361,7 +271,7 @@ Index clean · HTML
               <p>Express, Node.js, MongoDB</p>
             </div>
           </div>
- 
+
           <div class="card video-card" data-video-src="5.mp4" data-video-poster="7.png" data-video-titulo="Proyecto 5">
             <div class="video-wrapper">
               <video preload="metadata" poster="7.png" muted playsinline>
@@ -374,7 +284,7 @@ Index clean · HTML
               <p>Voice Client, Serverless Proxy, LLM Inference</p>
             </div>
           </div>
- 
+
           <div class="card video-card" data-video-src="6.mp4" data-video-poster="8.png" data-video-titulo="Proyecto 6">
             <div class="video-wrapper">
               <video preload="metadata" poster="8.png" muted playsinline>
@@ -386,15 +296,15 @@ Index clean · HTML
               <h3>Proyecto 6</h3>
             </div>
           </div>
- 
+
         </div>
       </section>
- 
+
     </div>
- 
+
   </div>
 </div>
- 
+
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-box">
     <button class="modal-cerrar" id="modal-cerrar" aria-label="Cerrar">✕</button>
@@ -407,7 +317,7 @@ Index clean · HTML
     </div>
   </div>
 </div>
- 
+
 <div class="modal-overlay" id="video-modal-overlay">
   <div class="modal-video-box">
     <span class="modal-video-titulo" id="video-modal-titulo"></span>
@@ -415,18 +325,18 @@ Index clean · HTML
     <video id="video-modal-player" controls playsinline></video>
   </div>
 </div>
- 
+
 <script>
 const modalOverlay = document.getElementById('modal-overlay');
 const modalCerrar = document.getElementById('modal-cerrar');
- 
+
 function abrirModal() {
   modalOverlay.classList.add('abierto');
 }
 function cerrarModal() {
   modalOverlay.classList.remove('abierto');
 }
- 
+
 document.addEventListener('click', function (e) {
   if (e.target.closest('.btn-contactar')) abrirModal();
 });
@@ -438,13 +348,13 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') cerrarModal();
 });
 </script>
- 
+
 <script>
 const videoModalOverlay = document.getElementById('video-modal-overlay');
 const videoModalCerrar = document.getElementById('video-modal-cerrar');
 const videoModalPlayer = document.getElementById('video-modal-player');
 const videoModalTitulo = document.getElementById('video-modal-titulo');
- 
+
 function abrirVideoModal(src, poster, titulo) {
   videoModalPlayer.setAttribute('poster', poster || '');
   videoModalPlayer.src = src;
@@ -452,14 +362,14 @@ function abrirVideoModal(src, poster, titulo) {
   videoModalOverlay.classList.add('abierto');
   videoModalPlayer.play().catch(function () {});
 }
- 
+
 function cerrarVideoModal() {
   videoModalOverlay.classList.remove('abierto');
   videoModalPlayer.pause();
   videoModalPlayer.removeAttribute('src');
   videoModalPlayer.load();
 }
- 
+
 document.addEventListener('click', function (e) {
   const tarjeta = e.target.closest('.video-card');
   if (!tarjeta) return;
@@ -469,7 +379,7 @@ document.addEventListener('click', function (e) {
     tarjeta.dataset.videoTitulo
   );
 });
- 
+
 videoModalCerrar.addEventListener('click', cerrarVideoModal);
 videoModalOverlay.addEventListener('click', function (e) {
   if (e.target === videoModalOverlay) cerrarVideoModal();
@@ -478,30 +388,30 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && videoModalOverlay.classList.contains('abierto')) cerrarVideoModal();
 });
 </script>
- 
+
 <script>
 (function () {
   const textoFinal = "Desarrollador FullStack & IA";
   const letrasError = 'abcdefghijk';
- 
+
   function letraAleatoria() {
     return letrasError[Math.floor(Math.random() * letrasError.length)];
   }
- 
+
   function iniciarEnElemento(el) {
     let i = 0;
     let timeoutId = null;
- 
+
     function escribir() {
       if (i >= textoFinal.length) {
         if (timeoutId) clearTimeout(timeoutId);
         timeoutId = setTimeout(reiniciar, 10000);
         return;
       }
- 
+
       const probabilidadError = i < textoFinal.length - 2 ? 0.1 : 0;
       const seEquivoca = Math.random() < probabilidadError;
- 
+
       if (seEquivoca) {
         el.textContent += letraAleatoria();
         const pausaNotar = 180 + Math.random() * 220;
@@ -519,21 +429,21 @@ document.addEventListener('keydown', function (e) {
         timeoutId = setTimeout(escribir, velocidad);
       }
     }
- 
+
     function reiniciar() {
       if (timeoutId) clearTimeout(timeoutId);
       el.textContent = '';
       i = 0;
       timeoutId = setTimeout(escribir, 450);
     }
- 
+
     reiniciar();
   }
- 
+
   function iniciarTodos() {
     document.querySelectorAll('.rol-typewriter').forEach(iniciarEnElemento);
   }
- 
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', iniciarTodos);
   } else {
@@ -541,35 +451,35 @@ document.addEventListener('keydown', function (e) {
   }
 })();
 </script>
- 
+
 <script>
 (function () {
   const track = document.getElementById('track');
   const primeraPagina = track.querySelector('.pagina');
- 
+
   const clon = primeraPagina.cloneNode(true);
   track.appendChild(clon);
- 
+
   let anchoPagina = window.innerWidth;
   let actual = 0;
   let objetivo = 0;
- 
+
   window.addEventListener('resize', function () {
     anchoPagina = window.innerWidth;
   });
- 
+
   function envolver() {
     while (objetivo >= anchoPagina) { objetivo -= anchoPagina; actual -= anchoPagina; }
     while (objetivo < 0) { objetivo += anchoPagina; actual += anchoPagina; }
   }
- 
+
   function alScroll(e) {
     e.preventDefault();
     objetivo += e.deltaY;
     envolver();
   }
   window.addEventListener('wheel', alScroll, { passive: false });
- 
+
   let touchY = null;
   window.addEventListener('touchstart', function (e) {
     touchY = e.touches[0].clientY;
@@ -584,7 +494,7 @@ document.addEventListener('keydown', function (e) {
     e.preventDefault();
   }, { passive: false });
   window.addEventListener('touchend', function () { touchY = null; });
- 
+
   function animar() {
     actual += (objetivo - actual) * 0.12;
     if (Math.abs(objetivo - actual) < 0.05) actual = objetivo;
@@ -594,6 +504,6 @@ document.addEventListener('keydown', function (e) {
   animar();
 })();
 </script>
- 
+
 </body>
 </html>
