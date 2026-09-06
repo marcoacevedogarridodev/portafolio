@@ -1,4 +1,3 @@
-// servidor-proxy.js
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -7,14 +6,10 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PUERTO || 3000;
 
-// 🔥 VERIFICAR QUE LEE LA VARIABLE
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-console.log('🔑 API Key:', GEMINI_API_KEY ? '✅ CARGADA' : '❌ NO CARGADA');
-console.log('🔑 Primeros 10 chars:', GEMINI_API_KEY ? GEMINI_API_KEY.substring(0, 10) : 'N/A');
 
 if (!GEMINI_API_KEY) {
-    console.error('❌ ERROR: No se encontró GEMINI_API_KEY en .env');
-    console.error('📁 Archivo .env debe contener: GEMINI_API_KEY=tu-clave');
+    console.error('No se encontro GEMINI_API_KEY en .env');
     process.exit(1);
 }
 
@@ -59,7 +54,6 @@ app.post('/api/chat', async (req, res) => {
             };
         }
 
-        console.log('📤 Enviando a Gemini...');
         const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -69,7 +63,7 @@ app.post('/api/chat', async (req, res) => {
         const data = await response.json();
 
         if (!response.ok) {
-            console.error('❌ Error Gemini:', data);
+            console.error('Error Gemini:', data);
             return res.status(response.status).json({
                 error: data.error?.message || `Error ${response.status}`,
                 ok: false
@@ -84,7 +78,7 @@ app.post('/api/chat', async (req, res) => {
         });
 
     } catch (error) {
-        console.error('❌ Error:', error);
+        console.error('Error:', error);
         return res.status(500).json({
             error: 'Error interno del servidor',
             ok: false
@@ -93,6 +87,5 @@ app.post('/api/chat', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
-    console.log(`🔑 API Key: ${GEMINI_API_KEY ? '✅ Configurada' : '❌ No configurada'}`);
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
