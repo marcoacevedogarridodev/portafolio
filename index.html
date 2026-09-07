@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Marco Acevedo - Desarrollador FullStack & IA</title>
-  <!-- Fuente Space Grotesk -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -22,7 +21,7 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body {
       height:100%;
-      overflow:hidden; /* el scroll vertical se traduce en movimiento horizontal */
+      overflow:hidden;
       overscroll-behavior:none;
     }
     body {
@@ -32,7 +31,6 @@
       line-height:1.6;
     }
 
-    /* VIEWPORT / TRACK: la "pista" horizontal que contiene las paginas duplicadas */
     .viewport {
       position:relative;
       width:100vw;
@@ -48,14 +46,13 @@
       width:100vw;
       height:100%;
       flex-shrink:0;
-      overflow:hidden; /* hero + galeria se mueven juntos, sin scroll vertical propio */
+      overflow:hidden;
       display:flex;
       flex-direction:column;
     }
 
-    /* HERO */
     .hero { padding:40px 40px 30px; max-width:900px; margin:0 auto; text-align:center; flex-shrink:0; }
-    .hero h1 { font-size:clamp(2.4rem,3vw,3.8rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; color:#111111; margin-bottom:20px; }
+    .hero h1 { font-size:clamp(2.4rem,3vw,3.8rem); font-weight:800; line-height:1.1; letter-spacing:-.02em; color:#111111; margin-bottom:20px; overflow-wrap:break-word; word-break:break-word; }
     .rol-cursor {
       display:inline-block;
       color:var(--verde);
@@ -81,14 +78,11 @@
     }
     .btn-secondary:hover { border-color:var(--verde); color:var(--verde); }
 
-    /* SECCIONES */
     .seccion { padding:20px 40px; max-width:1100px; margin:0 auto; border-top:1px solid var(--borde); text-align:center; flex:1; min-height:0; }
     .seccion-titulo { font-size:.75rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; }
 
-    /* SECCION PRODUCCION: ancho amplio, solo 2cm de espacio a cada lado */
     .en-produccion { max-width:none; padding-left:2cm; padding-right:2cm; }
 
-    /* GRID PRODUCCION (6 videos, una sola fila) */
     .grid-produccion { display:grid; grid-template-columns:repeat(6,1fr); gap:16px; text-align:left; }
     .video-card {
       background:var(--gris-card); border:1px solid var(--borde); border-radius:12px;
@@ -124,22 +118,6 @@
 
     footer { text-align:center; padding:24px; border-top:1px solid var(--borde); font-size:.78rem; color:var(--muted); }
 
-    /* CONTADOR DE VISITAS */
-    .badge-visitas {
-      position:fixed;
-      bottom:16px;
-      right:16px;
-      background:var(--gris-card);
-      border:1px solid var(--borde);
-      color:var(--muted);
-      font-size:.72rem;
-      padding:6px 12px;
-      border-radius:20px;
-      z-index:50;
-      opacity:.85;
-    }
-
-    /* MODAL DE CONTACTO */
     .modal-overlay {
       position:fixed; inset:0; background:rgba(0,0,0,.55);
       display:none; align-items:center; justify-content:center;
@@ -169,7 +147,6 @@
     }
     .modal-link:hover { border-color:var(--verde); color:var(--verde); }
 
-    /* MODAL DE VIDEO (mismo patron visual que el modal de contacto) */
     .modal-video-box {
       background:#000; border:1px solid var(--borde); border-radius:16px;
       padding:0; max-width:900px; width:100%;
@@ -191,7 +168,6 @@
     }
     .modal-video-box .modal-cerrar:hover { color:var(--verde); }
 
-    /* RESPONSIVE */
     @media(max-width:1100px){
       .grid-produccion { grid-template-columns:repeat(3,1fr); }
     }
@@ -199,14 +175,21 @@
       .grid-produccion { grid-template-columns:repeat(2,1fr); }
     }
     @media(max-width:600px){
-      .hero,.seccion { padding-left:20px; padding-right:20px; }
-      .hero { padding-top:40px; padding-bottom:20px; }
-      .en-produccion { padding-left:20px; padding-right:20px; }
-      .grid-produccion { grid-template-columns:1fr; }
+      .hero,.seccion { padding-left:16px; padding-right:16px; }
+      .hero { padding-top:28px; padding-bottom:16px; }
+      .hero h1 { font-size:1.6rem; line-height:1.25; margin-bottom:14px; }
+      .hero > p { font-size:.9rem; margin-bottom:24px; }
+      .en-produccion { padding-left:16px; padding-right:16px; }
+      .grid-produccion { grid-template-columns:repeat(2,1fr); gap:10px; }
+      .video-card-body { padding:8px 10px 10px; }
+      .video-card-body h3 { font-size:.68rem; margin-bottom:0; }
+      .video-card-body p { display:none; }
     }
     @media(max-width:480px){
-      .hero h1 { font-size:1.8rem; }
+      .hero h1 { font-size:1.35rem; }
       .hero-btns .btn-primary, .hero-btns .btn-secondary { width:100%; text-align:center; }
+      .grid-produccion { gap:8px; }
+      .video-card-body { padding:6px 8px 8px; }
     }
   </style>
 </head>
@@ -278,21 +261,41 @@
               <h3>Tienda App</h3>
               <p>Express, Node.js, MongoDB</p>
             </div>
-          </div>          
+          </div>
+
+          <div class="card video-card" data-video-src="5.mp4" data-video-poster="7.png" data-video-titulo="Proyecto 5">
+            <div class="video-wrapper">
+              <video preload="metadata" poster="7.png" muted playsinline>
+                <source src="5.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+              </video>
+            </div>
+            <div class="video-card-body">
+              <h3>Voice-to-LLM Assistant</h3>
+              <p>Voice Client, Serverless Proxy, LLM Inference</p>
+            </div>
+          </div>
+
+          <div class="card video-card" data-video-src="6.mp4" data-video-poster="8.png" data-video-titulo="Proyecto 6">
+            <div class="video-wrapper">
+              <video preload="metadata" poster="8.png" muted playsinline>
+                <source src="6.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+              </video>
+            </div>
+            <div class="video-card-body">
+              <h3>Proyecto 6</h3>
+            </div>
+          </div>
 
         </div>
       </section>
 
     </div>
-    <!-- La segunda copia de .pagina se inserta por JS para el loop infinito -->
 
   </div>
 </div>
 
-<!-- CONTADOR DE VISITAS (fuera de la pista, no se duplica) -->
-<div class="badge-visitas" id="contador-visitas"></div>
-
-<!-- MODAL CONTACTO (fuera de la pista, no se duplica) -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-box">
     <button class="modal-cerrar" id="modal-cerrar" aria-label="Cerrar">✕</button>
@@ -306,7 +309,6 @@
   </div>
 </div>
 
-<!-- MODAL VIDEO (fuera de la pista, no se duplica) -->
 <div class="modal-overlay" id="video-modal-overlay">
   <div class="modal-video-box">
     <span class="modal-video-titulo" id="video-modal-titulo"></span>
@@ -316,7 +318,6 @@
 </div>
 
 <script>
-// Modal de contacto (delegado, funciona con ambas copias del boton "Contactar")
 const modalOverlay = document.getElementById('modal-overlay');
 const modalCerrar = document.getElementById('modal-cerrar');
 
@@ -340,7 +341,6 @@ document.addEventListener('keydown', function (e) {
 </script>
 
 <script>
-// Modal de video: click en cualquier tarjeta (de cualquiera de las 2 paginas) abre el video en un popup
 const videoModalOverlay = document.getElementById('video-modal-overlay');
 const videoModalCerrar = document.getElementById('video-modal-cerrar');
 const videoModalPlayer = document.getElementById('video-modal-player');
@@ -351,7 +351,7 @@ function abrirVideoModal(src, poster, titulo) {
   videoModalPlayer.src = src;
   videoModalTitulo.textContent = titulo || '';
   videoModalOverlay.classList.add('abierto');
-  videoModalPlayer.play().catch(function () { /* autoplay bloqueado por el navegador, no pasa nada */ });
+  videoModalPlayer.play().catch(function () {});
 }
 
 function cerrarVideoModal() {
@@ -381,7 +381,6 @@ document.addEventListener('keydown', function (e) {
 </script>
 
 <script>
-// Efecto maquina de escribir para el rol (se aplica a todas las copias, incluida la clonada)
 (function () {
   const textoFinal = "Desarrollador FullStack & IA";
   const letrasError = 'abcdefghijk';
@@ -445,32 +444,10 @@ document.addEventListener('keydown', function (e) {
 </script>
 
 <script>
-// Contador de visitas: llama al endpoint serverless una vez por carga de pagina
-(function () {
-  const contador = document.getElementById('contador-visitas');
-  if (!contador) return;
-
-  fetch('/api/visitas')
-    .then(function (r) { return r.json(); })
-    .then(function (data) {
-      if (data.ok) {
-        contador.textContent = data.visitas + ' visitas';
-      }
-    })
-    .catch(function (error) {
-      console.error('Error al cargar el contador de visitas:', error);
-    });
-})();
-</script>
-
-<script>
-// Scroll horizontal con loop infinito: la pagina completa (hero + galeria) se mueve como un solo bloque.
-// Se duplica la pagina una vez; al llegar al final reaparece la copia identica desde el otro lado.
 (function () {
   const track = document.getElementById('track');
   const primeraPagina = track.querySelector('.pagina');
 
-  // Duplicamos la pagina completa para el efecto de loop infinito
   const clon = primeraPagina.cloneNode(true);
   track.appendChild(clon);
 
@@ -483,20 +460,17 @@ document.addEventListener('keydown', function (e) {
   });
 
   function envolver() {
-    // Mantiene el valor dentro de [0, anchoPagina) para el loop infinito sin cortes
     while (objetivo >= anchoPagina) { objetivo -= anchoPagina; actual -= anchoPagina; }
     while (objetivo < 0) { objetivo += anchoPagina; actual += anchoPagina; }
   }
 
   function alScroll(e) {
-    // Si el objetivo del wheel es un elemento con scroll interno propio, dejarlo pasar
     e.preventDefault();
     objetivo += e.deltaY;
     envolver();
   }
   window.addEventListener('wheel', alScroll, { passive: false });
 
-  // Soporte tactil (celular): swipe vertical mueve el contenido horizontalmente
   let touchY = null;
   window.addEventListener('touchstart', function (e) {
     touchY = e.touches[0].clientY;
